@@ -1,14 +1,20 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
+angular.module('workout.system').controller('HeaderController', ['$scope', 'Global', function ($scope, Global) {
     $scope.global = Global;
 
     $scope.menu = [{
-        'title': 'Articles',
-        'link': 'articles'
+        'title': 'Home',
+        'link': ''
     }, {
-        'title': 'Create New Article',
-        'link': 'articles/create'
+        'title': 'Programs',
+        'link': 'programs'
+    }, {
+        'title': 'Exercises',
+        'link': 'exercises'
+    }, {
+        'title': 'Workout Mode',
+        'link': 'workout'
     }];
     
     $scope.isCollapsed = false;
