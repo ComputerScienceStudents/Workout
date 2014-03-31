@@ -1,0 +1,16 @@
+<div class="programDetails">
+	<h1 class="name">
+		{{program.name}}
+	</h1>
+	<h2 class="time">
+		{{program.time}}
+	</h2>
+	<h2 class="details">
+		{{program.details}}
+	</h2>
+	<div ng-repeat="exercise in program.exercises">
+		<span class="youtube"><a ng-href="{{exercise.youtube}}"></a></span>
+		<span class="exerciseName">{{exercise.name}}</span>
+		<span class="exerciseRepetitions">{{exercise.repetitions}}</span>
+	</div>
+</div>
