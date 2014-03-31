@@ -3,15 +3,10 @@
         <li>
             <a class="navbar-brand" href="/">WORKOUT</a>
         </li>
-        <li data-ng-repeat="item in menu" ui-route="/{{item.link}}" ng-class="{active: global.user}">
-            <a href="#!/{{item.link}}">{{item.title}}</a>
-        </li>
-    </ul>
-    <ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
-        <li><a href="signup">Signup</a>
-        </li>
-        <li class="divider-vertical"></li>
-        <li><a href="signin">Signin</a>
+        <li data-ng-repeat="item in menu" ui-route="/{{item.link}}">
+            
+            <a ng-show={{global.user}} href="#!/{{item.link}}">{{item.title}}</a>
+            <a ng-hide={{global.user}} >{{item.title}}</a>
         </li>
     </ul>
 

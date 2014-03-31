@@ -8,7 +8,7 @@ module.exports = function(app) {
 			return res.redirect('/signin/');
 		}
 		next();
-	}
+	};
     
     // Home route
     var index = require('../controllers/index');
