@@ -14,10 +14,10 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
         url: '/exercises',
         templateUrl: 'views/exercises/list.html'
     })
-      .state('programs.list', {
+    .state('programs.list', {
         url: '/list',
         templateUrl: 'views/programs.html'
-      })
+    });
 }
 ]);
 

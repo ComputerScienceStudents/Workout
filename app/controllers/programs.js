@@ -88,14 +88,14 @@ exports.show = function(req, res) {
  * List of Programs
  */
 exports.all = function(req, res) {
-    Program.find().sort('-created').populate('user', 'name username').exec(function(err, programs) {
+    Program.find().sort('-created').populate('user', 'name username').exec(function(err) {
         if (err) {
             res.render('error', {
                 status: 500
             });
         } else {
             var mockPrograms = [];
-            var names = ["Pompa!", "Masa jest, teraz rzeźbić", "Dla staruszków", "Informatyk style", "Pełen hardkor", "Kokosowy koksu"];
+            var names = ['Pompa!', 'Masa jest, teraz rzeźbić', 'Dla staruszków', 'Informatyk style', 'Pełen hardkor', 'Kokosowy koksu'];
             for(var i = 0; i < names.length; i++) {
                 mockPrograms.push(new Program({title: names[i]}));
             }
