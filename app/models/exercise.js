@@ -38,3 +38,6 @@ var ExerciseSchema = new Schema({
 ExerciseSchema.path('title').validate(function(title) {
     return title.length;
 }, 'Title cannot be blank');
+
+
+mongoose.model('Exercise', ExerciseSchema);

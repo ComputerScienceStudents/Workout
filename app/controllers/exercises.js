@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Article = mongoose.model('Exercise'),
+    Exercise = mongoose.model('Exercise'),
     _ = require('lodash');
 
 
@@ -43,7 +43,7 @@ exports.create = function(req, res) {
  * Update an exercise
  */
 exports.update = function(req, res) {
-    var article = req.exercise;
+    var exercise = req.exercise;
 
     exercise = _.extend(exercise, req.body);
 
