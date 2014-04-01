@@ -11,7 +11,15 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
       .state('home', {
         url: '/',
         templateUrl: 'views/index.html'
-    });
+      })
+      .state('programs', {
+        url: '/programs',
+        templateUrl: 'views/programs.html'
+      })
+      .state('programs.list', {
+        url: '/list',
+        templateUrl: 'views/programs.html'
+      });
 }
 ]);
 
