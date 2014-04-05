@@ -7,19 +7,17 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
     $urlRouterProvider.otherwise('/');
 
     // states for my app
-    $stateProvider
-      .state('home', {
+    $stateProvider.state('home', {
         url: '/',
         templateUrl: 'views/index.html'
-      })
-      .state('programs', {
-        url: '/programs',
-        templateUrl: 'views/programs.html'
-      })
-      .state('programs.list', {
+    }).state('all exercises', {
+        url: '/exercises',
+        templateUrl: 'views/exercises/list.html'
+    })
+    .state('programs.list', {
         url: '/list',
         templateUrl: 'views/programs.html'
-      });
+    });
 }
 ]);
 
