@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Find article by id
+ * Find exercise  by id
  */
 exports.exercise = function(req, res, next, id) {
     Exercise.load(id, function(err, exercise) {
@@ -96,10 +96,12 @@ exports.all = function(req, res) {
         } else {
             // fake exercises
             var fakes = [];
-            var names = ['push-ups', 'planks', 'sit-up', 'dips'];
-            for(var i = 0; i < names.length; i++) {
-                fakes.push(new Exercise({title: names[i]}));
-            }
+            fakes.push(new Exercise({title: 'push-ups', description: 'A push-up is a common calisthenics exercise performed in a prone position by raising and lowering the body using the arms. Push-ups exercise the pectoral muscles, triceps, and anterior deltoids, with ancillary benefits to the rest of the deltoids, serratus anterior, coracobrachialis and the midsection as a whole. Push-ups are a basic exercise used in civilian athletic training or physical education and commonly in military physical training. They are also a common form of punishment used in the military, school sport, or in some martial arts dojos.',
+                video: 'http://www.youtube.com/watch?v=zF0jbubK_jU', minature: 'http://i1.ytimg.com/vi/zF0jbubK_jU/mqdefault.jpg'}));
+            fakes.push(new Exercise({title: 'pull-ups', description: 'A pull-up is a variety of upper-body compound pulling motions for the purpose of exercise. The pull-up has two main methods of execution; the first is with a pronated (overhand) grip and the second is with a supinated (underhand) grip.',
+                video: 'http://www.youtube.com/watch?v=QZF0Uz7rty8', minature: 'http://i1.ytimg.com/vi/QZF0Uz7rty8/mqdefault.jpg'}));
+
+            
             res.jsonp(fakes);
         }
     });
