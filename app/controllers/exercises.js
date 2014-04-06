@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 /**
  * Find article by id
  */
-exports.article = function(req, res, next, id) {
+exports.exercise = function(req, res, next, id) {
     Exercise.load(id, function(err, exercise) {
         if (err) return next(err);
         if (!exercise) return next(new Error('Failed to load exercise ' + id));
@@ -94,7 +94,13 @@ exports.all = function(req, res) {
                 status: 500
             });
         } else {
-            res.jsonp(exercises);
+            // fake exercises
+            var fakes = [];
+            var names = ['push-ups', 'planks', 'sit-up', 'dips'];
+            for(var i = 0; i < names.length; i++) {
+                fakes.push(new Exercise({title: names[i]}));
+            }
+            res.jsonp(fakes);
         }
     });
 };

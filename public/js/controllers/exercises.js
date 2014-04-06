@@ -4,7 +4,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
     $scope.global = Global;
 
     $scope.create = function() {
-        var exercise = new Exercises({
+        var exercise = new Exercise({
             title: this.title,
             content: this.content
         });
