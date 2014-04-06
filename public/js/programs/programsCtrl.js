@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('workout.system').controller('ProgramsListController', function ($scope) {
+angular.module('workout.programs').controller('ProgramsListCtrl', function ($scope) {
     $scope.programs = [
         {'name': 'Pompa!'},
         {'name': 'Masa jest, teraz rzeźbić'},
