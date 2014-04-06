@@ -23,3 +23,18 @@ footer {
 footer p {
     padding:5px 0 12px 10px
 }
+
+ul,li.categories { 
+    list-style-type: none;
+    list-style-position:inside;
+    margin:0;
+    padding:0; 
+}
+
+.exercise-preview h4 {
+    margin-top: 0;
+}
+
+.exercise-preview {
+    margin-bottom: 20px;
+}
