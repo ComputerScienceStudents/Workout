@@ -48,6 +48,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
         Exercises.query(function(exercises) {
             $scope.exercises = exercises;
         });
+        $scope.categories = [{name: 'All', count: 55}, {name: 'Biceps', count: 22}, {name: 'Abdominal', count: 44}, {name: 'Legs', count: 2}];
     };
 
     $scope.findOne  = function() {
