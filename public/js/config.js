@@ -17,6 +17,10 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
     .state('all programs', {
         url: '/programs',
         templateUrl: 'views/programs/programs.html'
+    })
+    .state('program by id', {
+        url: '/programs/:programId',
+        templateUrl: 'views/programs/details.html'
     });
 }
 ]);
