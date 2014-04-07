@@ -3,7 +3,9 @@
 		<div class="col-md-2">
 			<h3>categories</h3>
 			<ul class="categories">
-				<li data-ng-repeat="category in categories" >{{category.name}} ({{category.count}})</li>
+				<li data-ng-repeat="category in categories" data-ng-class="{true:'current-category', false:''}[category.name==currentCategory]">
+					<a ng-click="selectCategory(category.name)">{{category.name}} ({{category.count}})</a>
+				</li>
 			</ul>
 		</div>
 		<div class="col-md-8">
