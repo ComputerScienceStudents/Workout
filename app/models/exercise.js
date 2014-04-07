@@ -29,6 +29,11 @@ var ExerciseSchema = new Schema({
         type: String,
         default: '',
         trim: true
+    },
+    minature: {
+        type: String,
+        default: '',
+        trim: true
     }
 });
 
