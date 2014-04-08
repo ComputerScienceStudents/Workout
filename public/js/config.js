@@ -17,10 +17,13 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
         url: '/exercises/create',
         templateUrl: 'views/exercises/create.html'
     })
-    .state('programs.list', {
-        url: '/list',
-        templateUrl: 'views/programs.html'
-    });
+    .state('all programs', {
+        url: '/programs',
+        templateUrl: 'views/programs/list.html'
+    })
+    .state('program details',
+        '/programs/:id', 
+        {templateUrl: 'views/programs/details.html', controller: 'ProgramsDetailsController'});
 }
 ]);
 

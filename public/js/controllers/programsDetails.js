@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('workout.programs').controller('ProgramsController', ['$scope', 'ProgramsService', function ($scope, ProgramsService) {
+angular.module('workout.programs').controller('ProgramsDetailsController', ['$scope', 'ProgramsService', function ($scope, ProgramsService) {
     $scope.programsTest = ProgramsService.query();
     
     $scope.programs = 

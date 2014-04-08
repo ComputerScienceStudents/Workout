@@ -96,8 +96,12 @@ exports.all = function(req, res) {
         } else {
             var mockPrograms = [];
             var names = ['Pompa!', 'Masa jest, teraz rzeźbić', 'Dla staruszków', 'Informatyk style', 'Pełen hardkor', 'Kokosowy koksu'];
+            var leads = ['Pompuj pompe', 'Dla tych, co przesadzili z masą', '80 letnie bajcepsy', '5kg na klate', 'Hardkorr', 'Koksić trzeba koks'];
+            var descriptions = ['Pompujesz pompą pompe? to jest program specjalnie dla Ciebie. Dla wszystkich strażaków!', 'Za dużo tłuszczyku? Dla tych co chcą zrzucić pare kilogramów',
+            'Niech wszystkie babcie się zachwycą absem', 'Informatyk też musi dbać o forme. Nie pozwól, by mięśnie Ci przeszkadzały w klepaniu',
+            'Będzie się lało! Pełny hardkor to program tylko dla ludzi hardkorów  i takie tam.', 'Brakuje Ci sił, gdy przerzucasz koks? To jest program spejcalnie dla Ciebie']
             for(var i = 0; i < names.length; i++) {
-                mockPrograms.push(new Program({title: names[i]}));
+                mockPrograms.push(new Program({title: names[i], lead: leads[i], description: descriptions[i]}));
             }
             res.jsonp(mockPrograms);
         }

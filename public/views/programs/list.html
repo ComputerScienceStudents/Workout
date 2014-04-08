@@ -1,0 +1,28 @@
+<section data-ng-controller="ProgramsController">
+	<h1>Your programs <a><span class="glyphicon glyphicon-plus-sign"></span></a> </h1> 
+  	<accordion>
+	  	<accordion-group ng-repeat="program in programsTest" is-open="isopen">
+	  		<accordion-heading>
+	  			{{program.title}}
+	  			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+	  		</accordion-heading>
+	      	{{program.lead}}<br />
+      	    <div class="btn-group">
+		        <a class="btn btn-primary" data-ng-href="#!/programs/{{program._id}}" ng-model="checkModel.left" btn-checkbox>Details</a>
+		        <button type="button" class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Run</button>
+		    </div>
+	    </accordion-group>
+    </accordion>
+  	<h1>Default programs</h1>
+	<accordion>
+	  	<accordion-group ng-repeat="program in programsTest" is-open="isopen">
+	  		<accordion-heading>
+	  			{{program.title}}
+	  			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+	  		</accordion-heading>
+	      	{{program.lead}}
+	      	<a>Details</a>
+      		<a>Run</a>
+	    </accordion-group>
+    </accordion>
+</section>
