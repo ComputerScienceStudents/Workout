@@ -4,12 +4,12 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
     $scope.global = Global;
 
     $scope.create = function() {
-        var exercise = new Exercise({
+        var exercise = new Exercises({
             title: this.title,
             content: this.content
         });
         exercise.$save(function(response) {
-            $location.path('articles/' + response._id);
+            $location.path('exercises/' + response._id);
         });
 
         this.title = '';
