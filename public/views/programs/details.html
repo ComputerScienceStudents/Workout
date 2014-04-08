@@ -1,15 +1,15 @@
 <section ng-controller="ProgramDetailsCtrl" class="programDetails">
-	<h1 class="name">
-		{{program.name}}
+	<h1 class="title">
+		{{program.title}}
 	</h1>
-	<h2 class="time">
+	<h3 class="time">
 		{{program.time}}
-	</h2>
-	<h2 class="details">
+	</h3>
+	<h3 class="details">
 		{{program.details}}
-	</h2>
+	</h3>
 	<div ng-repeat="exercise in program.exercises">
-		<span class="youtube"><a ng-href="{{exercise.youtube}}"></a></span>
+		<span class="youtube"><a ng-href="youtube.com/watch?v={{exercise.youtube}}">link</a></span>
 		<span class="exerciseName">{{exercise.name}}</span>
 		<span class="exerciseRepetitions">{{exercise.repetitions}}</span>
 	</div>

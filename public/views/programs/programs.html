@@ -1,8 +1,8 @@
-<section ng-controller="ProgramsListCtrl">
+<section data-ng-controller="ProgramsListCtrl" data-ng-init="find()">
 	<h1>This is the programs view</h1>
 	<ul>
-	    <li ng-repeat="program in programs">
-	      {{program.name}}
+	    <li data-ng-repeat="program in programs">
+	      <a ng-href=#!/programs/{{program._id}}> {{program.title}} </a>
 	    </li>
   	</ul>
 </section>
