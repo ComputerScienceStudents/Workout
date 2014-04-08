@@ -1,0 +1,41 @@
+<section data-ng-controller="ExercisesController">
+	<form class="form-horizontal col-md-6 col-md-offset-2" role="form" data-ng-submit="create()">
+		<h3 class="col-md-offset-4">new exercise</h3>
+	</br>
+		<div class="form-group">
+			<label for="title" class="col-md-2 control-label">Title</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="description" class="col-md-2 control-label">Description</label>
+			<div class="col-md-10">
+				<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="categories" class="col-md-2 control-label">Categories</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="categories" id="categories" placeholder="Categories (comma-separated)" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="minature" class="col-md-2 control-label">Minature URL</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="minature" id="minature" placeholder="Minature address" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="video" class="col-md-2 control-label">Video URL</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="video" id="video" placeholder="Video URL" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</form>
+</section>
