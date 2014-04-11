@@ -44,11 +44,30 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
         });
     };
 
+    // helper method
+    var getExercisesCategories = function(exercises) {
+        var categories = {}, exerciseCategories;
+        
+        for (var exerciseId = 0; exerciseId < exercises.length; exerciseId++) {
+            exerciseCategories = exercises[exerciseId].categories;
+            for (var catId = 0; catId < exerciseCategories.length; catId++) {
+                categories[exerciseCategories[catId]] = (exerciseCategories[catId] in categories) ? categories[exerciseCategories[catId]] + 1 : 1;
+            };
+        };
+
+        var result = [{name: 'All', count: exercises.length}];
+        for (var cat in categories) {
+            result.push({name: cat, count: categories[cat]});
+        }
+        return result;
+    };
+
     $scope.find = function() {
         Exercises.query(function(exercises) {
             $scope.exercises = exercises;
+            $scope.categories = getExercisesCategories(exercises);
+            $scope.currentCategory = "All";
         });
-        $scope.categories = [{name: 'All', count: 55}, {name: 'Biceps', count: 22}, {name: 'Abdominal', count: 44}, {name: 'Legs', count: 2}, {name: 'Stretching', count: 1}];
     };
 
     $scope.findOne  = function() {
@@ -56,6 +75,16 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
             exerciseId: $stateParams.exerciseId
         }, function(exercise) {
             $scope.exercise = exercise;
+        });
+    };
+
+    $scope.selectCategory = function(category) {
+        Exercises.query(function(exercises) {
+            $scope.exercises = exercises.filter(function(exercise) {
+                return category === 'All' || exercise.categories.indexOf(category) != -1;
+            });
+            $scope.categories = getExercisesCategories(exercises);
+            $scope.currentCategory = category;
         });
     };
 }]);
