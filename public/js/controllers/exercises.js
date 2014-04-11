@@ -7,7 +7,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
         var exercise = new Exercises({
             title: this.title,
             description: this.description,
-            categories: this.categories.split(','), // to be improved in future
+            categories: this.categories.split(',').map(function(cat) { return cat.trim() }), // to be improved in future
             video: this.video,
             minature: this.minature
         });
