@@ -26,7 +26,6 @@ exports.exercise = function(req, res, next, id) {
 exports.create = function(req, res) {
     var exercise = new Exercise(req.body);
     exercise.user = req.user;
-    console.log(req.body)
     exercise.save(function(err) {
         if (err) {
             return res.send('users/signup', {
