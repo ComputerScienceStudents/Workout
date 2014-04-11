@@ -47,12 +47,14 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
     // helper method
     var getExercisesCategories = function(exercises) {
         var categories = {}, exerciseCategories;
-        for (var i = 0; i < exercises.length; i++) {
-            exerciseCategories = exercises[i].categories.split(',');
-            for (var i2 = 0; i2 < exerciseCategories.length; i2++) {
-                categories[exerciseCategories[i2]] = (exerciseCategories[i2] in categories) ? categories[exerciseCategories[i2]] + 1 : 1;
+        
+        for (var exerciseId = 0; exerciseId < exercises.length; exerciseId++) {
+            exerciseCategories = exercises[exerciseId].categories;
+            for (var catId = 0; catId < exerciseCategories.length; catId++) {
+                categories[exerciseCategories[catId]] = (exerciseCategories[catId] in categories) ? categories[exerciseCategories[catId]] + 1 : 1;
             };
         };
+
         var result = [{name: 'All', count: exercises.length}];
         for (var cat in categories) {
             result.push({name: cat, count: categories[cat]});
@@ -79,7 +81,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
     $scope.selectCategory = function(category) {
         Exercises.query(function(exercises) {
             $scope.exercises = exercises.filter(function(exercise) {
-                return category === 'All' || exercise.categories.split(',').indexOf(category) != -1;
+                return category === 'All' || exercise.categories.indexOf(category) != -1;
             });
             $scope.categories = getExercisesCategories(exercises);
             $scope.currentCategory = category;

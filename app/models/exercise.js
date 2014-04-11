@@ -36,9 +36,8 @@ var ExerciseSchema = new Schema({
         trim: true
     },
     categories: {
-        type: String,
-        default: '',
-        trim: true
+        type: Array,
+        default: []
     }
 });
 
