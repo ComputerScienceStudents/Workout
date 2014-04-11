@@ -6,7 +6,10 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
     $scope.create = function() {
         var exercise = new Exercises({
             title: this.title,
-            content: this.content
+            description: this.description,
+            categories: this.categories.split(','), // to be improved in future
+            video: this.video,
+            minature: this.minature
         });
         exercise.$save(function(response) {
             $location.path('exercises/' + response._id);

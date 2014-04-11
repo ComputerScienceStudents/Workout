@@ -26,7 +26,7 @@ exports.exercise = function(req, res, next, id) {
 exports.create = function(req, res) {
     var exercise = new Exercise(req.body);
     exercise.user = req.user;
-
+    console.log(req.body)
     exercise.save(function(err) {
         if (err) {
             return res.send('users/signup', {
@@ -79,7 +79,7 @@ exports.destroy = function(req, res) {
 
 /**
  * Show an exercise
- */
+ */ 
 exports.show = function(req, res) {
     res.jsonp(req.exercise);
 };
@@ -105,7 +105,7 @@ exports.all = function(req, res) {
             predefined.push(new Exercise({title: 'stretching', description: 'Stretching is a form of physical exercise in which a specific muscle or tendon (or muscle group) is deliberately flexed or stretched in order to improve the muscles felt elasticity and achieve comfortable muscle tone. The result is a feeling of increased muscle control, flexibility and range of motion. Stretching is also used therapeutically to alleviate cramps.',
                 video: 'http://www.youtube.com/watch?v=sVZBZ6wpqmg', minature: 'http://i1.ytimg.com/vi_webp/sVZBZ6wpqmg/mqdefault.webp', categories: ['Stretching', 'Abdominal']}));
             
-            res.jsonp(fakes);
+            res.jsonp(predefined.concat(exercises));
         }
     });
 };
