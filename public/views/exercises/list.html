@@ -3,7 +3,9 @@
 		<div class="col-md-2">
 			<h3>categories</h3>
 			<ul class="categories">
-				<li data-ng-repeat="category in categories" >{{category.name}} ({{category.count}})</li>
+				<li data-ng-repeat="category in categories" ng-class="{'current-category': category.name==currentCategory}">
+					<a ng-click="selectCategory(category.name)">{{category.name}} ({{category.count}})</a>
+				</li>
 			</ul>
 		</div>
 		<div class="col-md-8">
@@ -21,7 +23,7 @@
 					<div>
 				</div>
 			</article>
-		    <h1 data-ng-hide="!exercises || exercises.length">No exercises yet. <br> Why don't you <a href="/#!/exercise/create">Create One</a>?</h1>
+		    <h4 style="text-align:center"><br>create your <a href="/#!/exercises/create">own exercise</a></h4>
 		</div>
 	</div>
 </section>
