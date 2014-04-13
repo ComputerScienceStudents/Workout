@@ -1,4 +1,4 @@
-<section data-ng-controller="ExercisesController">
+<section data-ng-controller="ExercisesController" ng-init="find()">
 	<form class="form-horizontal col-md-6 col-md-offset-2" role="form" data-ng-submit="create()">
 		<h3 class="col-md-offset-4">new exercise</h3>
 	</br>
@@ -17,7 +17,7 @@
 		<div class="form-group">
 			<label for="categories" class="col-md-2 control-label">Categories</label>
 			<div class="col-md-10">
-				<input type="text" class="form-control" data-ng-model="categories" id="categories" placeholder="Categories (comma-separated)" required>
+				<input type="text" class="form-control" ui-select2="select2Options" ng-model="newCategories" id="categories" placeholder="Categories" required>
 			</div>
 		</div>
 		<div class="form-group">
@@ -37,5 +37,6 @@
 				<button type="submit" class="btn btn-default">Submit</button>
 			</div>
 		</div>
+
 	</form>
 </section>
