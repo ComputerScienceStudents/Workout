@@ -81,7 +81,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
         'tags': function() {
             var defined = $scope.categories.map(function(cat) { return cat.name; });
             var i = defined.indexOf('All');
-            if(i != -1) defined.splice(i, 1);
+            if(i !== -1) defined.splice(i, 1);
             return defined;
         }
     };
