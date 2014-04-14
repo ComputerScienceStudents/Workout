@@ -20,7 +20,7 @@ module.exports = function(app) {
     app.put('/programs/:programId', authorization.requiresLogin, hasAuthorization, programs.update);
     app.del('/programs/:programId', authorization.requiresLogin, hasAuthorization, programs.destroy);
 
-    // Finish with setting up the articleId param
+    // Finish with setting up the programId param
     app.param('programId', programs.program);
 
 };

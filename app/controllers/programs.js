@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Program = mongoose.model('Program'),
+    Program = mongoose.model('Program'), 
     _ = require('lodash');
 
 
@@ -13,9 +13,18 @@ var mongoose = require('mongoose'),
  */
 exports.program = function(req, res, next, id) {
     Program.load(id, function(err, program) {
-        if (err) return next(err);
+        /*if (err) return next(err);
         if (!program) return next(new Error('Failed to load program ' + id));
         req.program = program;
+        next();*/
+
+        //mock
+        var mock = new Program({
+            title: "Tytuł",
+            lead: "Lead",
+            description: "opis"
+        });
+        req.program = mock;
         next();
     });
 };
@@ -81,7 +90,12 @@ exports.destroy = function(req, res) {
  * Show an program
  */
 exports.show = function(req, res) {
-    res.jsonp(req.program);
+    var mock = new Program({
+        title: "Tytuł",
+        lead: "Lead",
+        description: "opis"
+    });
+    res.jsonp(mock);
 };
 
 /**
@@ -101,7 +115,8 @@ exports.all = function(req, res) {
             'Niech wszystkie babcie się zachwycą absem', 'Informatyk też musi dbać o forme. Nie pozwól, by mięśnie Ci przeszkadzały w klepaniu',
             'Będzie się lało! Pełny hardkor to program tylko dla ludzi hardkorów  i takie tam.', 'Brakuje Ci sił, gdy przerzucasz koks? To jest program spejcalnie dla Ciebie']
             for(var i = 0; i < names.length; i++) {
-                mockPrograms.push(new Program({title: names[i], lead: leads[i], description: descriptions[i]}));
+                var rate = Math.round(Math.random()*10);
+                mockPrograms.push(new Program({title: names[i], lead: leads[i], description: descriptions[i], rating: rate}));
             }
             res.jsonp(mockPrograms);
         }

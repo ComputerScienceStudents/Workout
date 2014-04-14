@@ -53,4 +53,14 @@ ProgramSchema.path('lead').validate(function(title) {
     return description.length;
 }, 'Lead cannot be blank');
 
+
+/**
+ * Statics
+ */
+ProgramSchema.statics.load = function(id, cb) {
+    this.findOne({
+        _id: mongoose.Types.ObjectId(id)
+    }).populate('user', 'name username').exec(cb);
+};
+
 mongoose.model('Program', ProgramSchema);

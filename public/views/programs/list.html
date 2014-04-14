@@ -1,5 +1,5 @@
-<section data-ng-controller="ProgramsController">
-	<h1>Your programs <a><span class="glyphicon glyphicon-plus-sign"></span></a> </h1> 
+<section data-ng-controller="ProgramsController" data-ng-init="list()">
+	<h1>Your programs <a ng-href="#!/programs/create"><span class="glyphicon glyphicon-plus-sign"></span></a> </h1> 
   	<accordion>
 	  	<accordion-group ng-repeat="program in programsTest" is-open="isopen">
 	  		<accordion-heading>
@@ -17,12 +17,13 @@
 	<accordion>
 	  	<accordion-group ng-repeat="program in programsTest" is-open="isopen">
 	  		<accordion-heading>
+	  			<rating value="program.rating" max="10" readonly="true"></rating>
 	  			{{program.title}}
 	  			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
 	  		</accordion-heading>
-	      	{{program.lead}}
-	      	<a>Details</a>
-      		<a>Run</a>
+	      	{{program.lead}}<br />
+	      	<a class="btn btn-primary" data-ng-href="#!/programs/{{program._id}}" ng-model="checkModel.left" btn-checkbox>Details</a>
+	        <button type="button" class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Run</button>
 	    </accordion-group>
     </accordion>
 </section>
