@@ -35,6 +35,11 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
     {
         url: '/programs/create', 
         templateUrl: 'views/programs/create.html'
+    })
+    .state('Workout mode', 
+    {
+        url: '/workout', 
+        templateUrl: 'views/workout/workout.html'
     });
 }]);
 
