@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  * Find program by id
  */
 exports.program = function(req, res, next, id) {
-    Program.load(id, function(err, program) {
+    Program.load(id, function(/*err, program*/) {
         /*if (err) return next(err);
         if (!program) return next(new Error('Failed to load program ' + id));
         req.program = program;
@@ -20,9 +20,9 @@ exports.program = function(req, res, next, id) {
 
         //mock
         var mock = new Program({
-            title: "Tytuł",
-            lead: "Lead",
-            description: "opis"
+            title: 'Tytuł',
+            lead: 'Lead',
+            description: 'opis'
         });
         req.program = mock;
         next();
@@ -91,9 +91,9 @@ exports.destroy = function(req, res) {
  */
 exports.show = function(req, res) {
     var mock = new Program({
-        title: "Tytuł",
-        lead: "Lead",
-        description: "opis"
+        title: 'Tytuł',
+        lead: 'Lead',
+        description: 'opis'
     });
     res.jsonp(mock);
 };
@@ -113,7 +113,7 @@ exports.all = function(req, res) {
             var leads = ['Pompuj pompe', 'Dla tych, co przesadzili z masą', '80 letnie bajcepsy', '5kg na klate', 'Hardkorr', 'Koksić trzeba koks'];
             var descriptions = ['Pompujesz pompą pompe? to jest program specjalnie dla Ciebie. Dla wszystkich strażaków!', 'Za dużo tłuszczyku? Dla tych co chcą zrzucić pare kilogramów',
             'Niech wszystkie babcie się zachwycą absem', 'Informatyk też musi dbać o forme. Nie pozwól, by mięśnie Ci przeszkadzały w klepaniu',
-            'Będzie się lało! Pełny hardkor to program tylko dla ludzi hardkorów  i takie tam.', 'Brakuje Ci sił, gdy przerzucasz koks? To jest program spejcalnie dla Ciebie']
+            'Będzie się lało! Pełny hardkor to program tylko dla ludzi hardkorów  i takie tam.', 'Brakuje Ci sił, gdy przerzucasz koks? To jest program spejcalnie dla Ciebie'];
             for(var i = 0; i < names.length; i++) {
                 var rate = Math.round(Math.random()*10);
                 mockPrograms.push(new Program({title: names[i], lead: leads[i], description: descriptions[i], rating: rate}));
