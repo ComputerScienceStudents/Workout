@@ -3,7 +3,7 @@ angular.module('workout.timer', [])
     function() {
       return {
         replace: true,
-        template:"<span><span>Time left: </span><span ng-style='{color:timerColor()}' ng-class='{hidden:!isVisible}'>{{timeLeft}}</span></span>",
+        template:"<div class='timer'><span class='label'>Time left: </span><span class='time {{timerColor()}}' ng-class='{hidden:!isVisible}'>{{timeLeft}}</span></div>",
         scope: {
           countdownTime: '='
         },
