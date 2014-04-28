@@ -1,19 +1,45 @@
 angular.module('workout.timer', [])
-  .directive('timer', ['$compile', function ($compile) {
-    return  {
-      restrict: 'EAC',
-      replace: false,
-      templateUrl: 'timer.html'
-      scope: {
-        countdownTime: '='
-      },
-      controller: ['$scope', '$element', '$attrs', '$interval', function ($scope, $element, $attrs, $interval) {
-        $scope.timeLeft = $scope.countdownTime;
-        $scope.on = function() {
-          $interval(function() {
-            $scope.timeLeft -= 1;
-          }, 1000, countdownTime);
+  .directive('timer', [
+    function() {
+      return {
+        replace: true,
+        template:"<span><span>Time left: </span><span ng-style='{color:timerColor()}' ng-class='{hidden:!isVisible}'>{{timeLeft}}</span></span>",
+        scope: {
+          countdownTime: '='
+        },
+        controller: ['$scope', '$element', '$attrs', '$interval',
+          function($scope, $element, $attrs, $interval) {
+            $scope.blink = function(){
+              $interval(function(){
+                $scope.isVisible = !$scope.isVisible;
+              }, 100);
+            }
+            $scope.on = function() {
+              var iPromise = $interval(function() {
+                $scope.timeLeft -= 1;
+                if($scope.timeLeft<=0){
+                  $interval.cancel(iPromise);
+                  $scope.blink();
+                }
+              }, 1000, $scope.on);
+            }
+          }
+        ],
+        link: function($scope,$element,$attrs){
+          $scope.timeLeft = $scope.countdownTime;
+          $scope.isVisible = true;
+          $scope.timerColor = function(){
+            if($scope.timeLeft/$scope.countdownTime>0.5){
+              return "green";
+            }else if($scope.timeLeft/$scope.countdownTime>0.3){
+              return "yellow";
+            }else{
+              return "red";
+            }
+          }
+
+          $scope.on();
         }
-      }        
-    };
-  }]);
+      }
+    }
+  ]);
