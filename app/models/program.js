@@ -45,12 +45,12 @@ ProgramSchema.path('title').validate(function(title) {
     return title.length;
 }, 'Title cannot be blank');
 
-ProgramSchema.path('description').validate(function(title) {
+ProgramSchema.path('description').validate(function(description) {
     return description.length;
 }, 'Description cannot be blank');
 
-ProgramSchema.path('lead').validate(function(title) {
-    return description.length;
+ProgramSchema.path('lead').validate(function(lead) {
+    return lead.length;
 }, 'Lead cannot be blank');
 
 
