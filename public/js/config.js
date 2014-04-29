@@ -21,6 +21,11 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
         url: '/programs',
         templateUrl: 'views/programs/list.html'
     })
+    .state('program create', 
+    {
+        url: '/programs/create', 
+        templateUrl: 'views/programs/create.html'
+    })
     .state('program details', 
     {
         url: '/programs/:id', 
@@ -30,11 +35,6 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
     {
         url: '/programs/:id/edit', 
         templateUrl: 'views/programs/edit.html'
-    })
-    .state('program create', 
-    {
-        url: '/programs/create', 
-        templateUrl: 'views/programs/create.html'
     })
     .state('Workout mode', 
     {

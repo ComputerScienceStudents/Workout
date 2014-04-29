@@ -1,0 +1,24 @@
+.timer{
+	height: 35px;
+}
+
+.timer .label{
+	color: black;
+	font-size: 30pt;
+}
+
+.timer .time{
+	font-size: 20pt;
+}
+
+.timer .red{
+	color:red;
+}
+
+.timer .green{
+	color: green;
+}
+
+.timer .yellow{
+	color: yellow;
+}
