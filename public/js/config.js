@@ -35,6 +35,11 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
     })
     .state('Workout mode', {
         url: '/workout', 
+        templateUrl: 'views/workout/error.html'
+    })
+    .state('Specific workout mode', 
+    {
+        url: '/workout/:programId', 
         templateUrl: 'views/workout/workout.html'
     });
 }]);

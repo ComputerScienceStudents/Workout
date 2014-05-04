@@ -30,6 +30,9 @@ var ProgramSchema = new Schema({
         pause: {
             type: Number
         },
+        length: {
+            type: Number
+        },
         exercise: {
             type: ObjectId,
             ref: 'Exercise'
