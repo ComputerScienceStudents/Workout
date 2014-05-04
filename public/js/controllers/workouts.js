@@ -5,6 +5,8 @@ angular.module('workout.workoutMode').controller('WorkoutsController', ['$scope'
 
     $scope.workoutState = "NOT_RUNNING";
 
+    $scope.exercisePause = false;
+
     $scope.findOne  = function() {
         Programs.get({
             programId: $stateParams.programId
@@ -23,7 +25,13 @@ angular.module('workout.workoutMode').controller('WorkoutsController', ['$scope'
         if($scope.program.exercises.length <= $scope.currentExerciseIndex+1){
             $scope.workoutState = "DONE";
         } else {
-            $scope.currentExerciseIndex++;
+            if($scope.currentExercise.pause !== undefined && !$scope.exercisePause){
+                $scope.exercisePause = true;
+            } else {
+                $scope.exercisePause = false;
+                $scope.currentExerciseIndex++;
+            }
+            $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];       
         }
     }
 
