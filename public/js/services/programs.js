@@ -1,9 +1,13 @@
 'use strict';
 
-angular.module('workout.programs').service('ProgramsService', ['$resource',
-	function($resource){
-		return $resource('/programs/:id', {}, {
-			query: {method:'GET', params: {}, isArray:true}
-		})
-;	}
+angular.module('workout.programs').service('Programs', ['$resource',
+	function($resource) {
+		return $resource('programs/:programId', {
+			programId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
 ]);

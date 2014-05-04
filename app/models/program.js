@@ -23,8 +23,19 @@ var ProgramSchema = new Schema({
         trim: true
     },
 
-    excercises: [{type: ObjectId, ref: 'ExerciseSchema'}],
-    
+    exercises: [{
+        repetitions: {
+            type: Number
+        },
+        pause: {
+            type: Number
+        },
+        exercise: {
+            type: ObjectId,
+            ref: 'Exercise'
+        }
+    }],
+
     lead: {
         type: String,
         default: '',

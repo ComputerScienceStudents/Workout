@@ -1,19 +1,19 @@
 <section data-ng-controller="ProgramsController" data-ng-init="findOne()">
 	<h1>{{program.title}}</h1> 
 	<p>{{program.description}}</p>
-	<article data-ng-repeat="exercise in program.excercises" class="container-fluid exercise-preview">
-		<div class="row" ng-show="exercise.title">
+	<article data-ng-repeat="exercise in program.exercises" class="container-fluid exercise-preview">
+		<div class="row" ng-show="exercise.exercise.title">
 			<div class="col-md-3 col-sm-4">
-				<img width="185" src="{{exercise.minature}}">
+				<img width="185" src="{{exercise.exercise.minature}}">
 			</div>
 			<div class="col-md-9 col-sm-8">
-				<h4><a href="{{exercise.video}}">{{exercise.title}}</a></h4>
-				<div>{{exercise.description}}</div>
+				<h4><a href="{{exercise.exercise.video}}">{{exercise.title}}</a></h4>
+				<div>{{exercise.exercise.description}}</div>
 				<div ng-show="exercise.repetitions">
 					Number of repetitions: {{exercise.repetitions}}
 				</div>
-				<div ng-show="exercise.length">
-					Length: {{exercise.length}} s
+				<div ng-show="exercise.exercise.length">
+					Length: {{exercise.exercise.length}} s
 				</div>
 			</div>
 		</div>
