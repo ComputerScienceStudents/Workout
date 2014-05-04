@@ -35,15 +35,35 @@ for (i = 0; i < predefinedExercises.length; i++) {
 	db.exercises.insert(predefinedExercises[i]);
 }
 
-var exId = db.exercises.findOne({title:'stretching'})._id;
+var exId1 = db.exercises.findOne({title:'push-ups'})._id;
+var exId2 = db.exercises.findOne({title:'pull-ups'})._id;
+var exId3 = db.exercises.findOne({title:'squats'})._id;
+var exId4 = db.exercises.findOne({title:'stretching'})._id;
+
 var predefinedPrograms = [];
 predefinedPrograms.push({
 	title: 'Example program',
 	exercises: [{
 		repetitions: 2,
 		pause: 30,
-		exercise: exId
-	}],
+		exercise: exId1
+	},
+	{
+		length: 5,
+		pause: 5,
+		exercise: exId2
+	},
+	{
+		length: 50,
+		pause: 30,
+		exercise: exId3
+	},
+	{
+		repetitions: 10,
+		pause: 10,
+		exercise: exId4
+	}
+	],
 	lead:'Example lead',
 	description:'Example description'
 })
