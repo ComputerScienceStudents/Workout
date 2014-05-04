@@ -28,11 +28,11 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
     })
     .state('program details', 
     {
-        url: '/programs/:id', 
+        url: '/programs/:programId', 
         templateUrl: 'views/programs/details.html'
     })
     .state('program edit', {
-        url: '/programs/:id/edit', 
+        url: '/programs/:programId/edit', 
         templateUrl: 'views/programs/edit.html'
     });
 }]);
