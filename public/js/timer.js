@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('workout.timer', [])
   .directive('timer', [
 
@@ -18,7 +20,7 @@ angular.module('workout.timer', [])
               $interval(function() {
                 $scope.isVisible = !$scope.isVisible;
               }, 100);
-            }
+            };
             
             $scope.on = function() {
               var iPromise = $interval(function() {
@@ -29,10 +31,10 @@ angular.module('workout.timer', [])
                 }
               }, 1000, $scope.on);
 
-            }
+            };
           }
         ],
-        link: function($scope, $element, $attrs) {
+        link: function($scope) {
           $scope.timeLeft = $scope.countdownTime;
           $scope.isVisible = true;
           
@@ -44,10 +46,10 @@ angular.module('workout.timer', [])
             } else {
               return "red";
             }
-          }
+          };
 
           $scope.on();
         }
-      }
+      };
     }
   ]);
