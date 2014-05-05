@@ -22,7 +22,7 @@ angular.module('workout.workoutMode').controller('WorkoutsController', ['$scope'
     }
 
     $scope.next = function() {
-        if($scope.program.exercises.length <= $scope.currentExerciseIndex+1){
+        if($scope.program.exercises.length <= $scope.currentExerciseIndex+1 && $scope.exercisePause){
             $scope.workoutState = "DONE";
         } else {
             if($scope.currentExercise.pause !== undefined && !$scope.exercisePause){

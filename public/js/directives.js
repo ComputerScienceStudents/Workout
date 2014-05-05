@@ -15,27 +15,3 @@ angular.module('workout').directive('wtYoutube', function($sce) {
     }
   };
 });
-
-angular.module('workout').directive('wtConditionAlert', function($sce) {
-  return {
-    restrict: 'A',
-    scope: { 
-      condition: '='
-    },
-    replace: true,
-    template: '<span class="{red: condition}"></span>',
-    transclude: true
-  };
-});
-
-angular.module('workout').directive('wtConditionBold', function($sce) {
-  return {
-    restrict: 'A',
-    scope: { 
-      condition: '='
-    },
-    replace: true,
-    template: '<strong></strong/>',
-    transclude: true
-  };
-});

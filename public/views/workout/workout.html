@@ -7,12 +7,12 @@
 			<ul>
 
 				<li ng-repeat="exercise in program.exercises">
-					<wtConditionAlert condition="($parent.currentExerciseIndex == $index && $parent.exercisePause)">
+					<span ng-class="{red :($parent.currentExerciseIndex == $index && !$parent.exercisePause), bold : $parent.currentExerciseIndex >= $index}">
 						<span ng-show="{{exercise.exercise}}">{{exercise.exercise.title}}</span> <br />
-					</wtConditionAlert>
-					<wtConditionAlert condition="($parent.currentExerciseIndex == $index && $parent.exercisePause)">
+					</span>
+					<span ng-class="{red :($parent.currentExerciseIndex == $index && $parent.exercisePause), bold : $parent.currentExerciseIndex > $index}">
 						<span ng-show="{{exercise.pause}}">Pause: {{exercise.pause}}</span>
-					</wtConditionAlert>
+					</span>
 				</li>
 			</ul>
 		</div>
@@ -28,7 +28,7 @@
 						<div timer countdown-time="currentExercise.length"></div>
 					</span>
 					<span ng-if="currentExercise.repetitions">
-						Repetitions: {{currentExercise.repetitions}}
+						<h1>Repetitions: {{currentExercise.repetitions}}</h1>
 					</span>
 				</span>
 				<span ng-if="exercisePause">
@@ -60,7 +60,7 @@
 			</span>
 
 			<span ng-switch-when="PAUSE">
-				<button type="button" class="btn btn-success btn-lg" ng-click="next()">
+				<button type="button" class="btn btn-success btn-lg" ng-click="resume()">
 				  RESUME
 				</button>
 			</span>
