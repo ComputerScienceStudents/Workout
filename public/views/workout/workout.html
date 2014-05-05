@@ -7,22 +7,34 @@
 			<ul>
 
 				<li ng-repeat="exercise in program.exercises">
-					<span ng-class="{'red': ($parent.currentExerciseIndex == $index && !$parent.exercisePause)}">
+					<wtConditionAlert condition="($parent.currentExerciseIndex == $index && $parent.exercisePause)">
 						<span ng-show="{{exercise.exercise}}">{{exercise.exercise.title}}</span> <br />
-					</span>
-					<span ng-class="{'red': ($parent.currentExerciseIndex == $index && $parent.exercisePause)}">
+					</wtConditionAlert>
+					<wtConditionAlert condition="($parent.currentExerciseIndex == $index && $parent.exercisePause)">
 						<span ng-show="{{exercise.pause}}">Pause: {{exercise.pause}}</span>
-					</span>
+					</wtConditionAlert>
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-6 text-center" ng-switch="workoutState">
+		<div class="col-md-6 text-center well" ng-switch="workoutState">
 			<span ng-switch-when="NOT_RUNNING">
 				{{program.description}}
 			</span>
 			<span ng-switch-when="RUNNING">
-				<h1>{{currentExercise.exercise.title}}</h1><br/>
-				<img ng-src="{{currentExercise.exercise.minature}}" alt="Minature" />
+				<span ng-if="!exercisePause">
+					<h1>{{currentExercise.exercise.title}}</h1><br/>
+					<img ng-src="{{currentExercise.exercise.minature}}" alt="Minature" /><br />
+					<span ng-if="currentExercise.length">
+						<div timer countdown-time="currentExercise.length"></div>
+					</span>
+					<span ng-if="currentExercise.repetitions">
+						Repetitions: {{currentExercise.repetitions}}
+					</span>
+				</span>
+				<span ng-if="exercisePause">
+					<h1>Pause</h1>
+					<div timer countdown-time="currentExercise.pause"></div>
+				</span>
 			</span>
 			<span ng-switch-when="PAUSE">
 				<h1>PAUSE</h1>

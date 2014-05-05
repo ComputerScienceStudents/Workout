@@ -6,7 +6,7 @@ angular.module('workout.timer', [])
         replace: true,
         template: "<div class='timer'>" +
           "<span class='label'>Time left: </span>" +
-          "<span class='time {{timerColor()}}' ng-class='{hidden:!isVisible}'>{{timeLeft}}</span>" +
+          "<span class='time {{timerColor()}}' ng-class='{invisible:!isVisible}'>{{timeLeft}}</span>" +
           "</div>",
         scope: {
           countdownTime: '='
