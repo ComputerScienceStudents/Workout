@@ -33,7 +33,8 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
         url: '/programs/:programId/edit', 
         templateUrl: 'views/programs/edit.html'
     })
-    .state('Workout mode', {
+    .state('Workout mode', 
+    {
         url: '/workout', 
         templateUrl: 'views/workout/error.html'
     })
