@@ -1,0 +1,75 @@
+<section data-ng-controller="WorkoutsController" data-ng-init="findOne()">
+	<div class="row">
+		<h1>{{program.title}}</h1> 
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<ul>
+
+				<li ng-repeat="exercise in program.exercises">
+					<span ng-class="{red :($parent.currentExerciseIndex == $index && !$parent.exercisePause), bold : $parent.currentExerciseIndex >= $index}">
+						<span ng-show="{{exercise.exercise}}">{{exercise.exercise.title}}</span> <br />
+					</span>
+					<span ng-class="{red :($parent.currentExerciseIndex == $index && $parent.exercisePause), bold : $parent.currentExerciseIndex > $index}">
+						<span ng-show="{{exercise.pause}}">Pause: {{exercise.pause}}</span>
+					</span>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-6 text-center well" ng-switch="workoutState">
+			<span ng-switch-when="NOT_RUNNING">
+				{{program.description}}
+			</span>
+			<span ng-switch-when="RUNNING">
+				<span ng-if="!exercisePause">
+					<h1>{{currentExercise.exercise.title}}</h1><br/>
+					<img ng-src="{{currentExercise.exercise.minature}}" alt="Minature" /><br />
+					<span ng-if="currentExercise.length">
+						<div timer countdown-time="currentExercise.length"></div>
+					</span>
+					<span ng-if="currentExercise.repetitions">
+						<h1>Repetitions: {{currentExercise.repetitions}}</h1>
+					</span>
+				</span>
+				<span ng-if="exercisePause">
+					<h1>Pause</h1>
+					<div timer countdown-time="currentExercise.pause"></div>
+				</span>
+			</span>
+			<span ng-switch-when="PAUSE">
+				<h1>PAUSE</h1>
+			</span>
+			<span ng-switch-when="DONE">
+				Congratulations! You've done your workout!
+			</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-4 col-md-4 text-center" ng-switch="workoutState">
+			<button type="button" class="btn btn-success btn-lg" ng-click="start()" ng-switch-when="NOT_RUNNING">
+			  START
+			</button>
+			
+			<span ng-switch-when="RUNNING">
+				<button type="button" class="btn btn-success btn-lg" ng-click="next()">
+				  NEXT
+				</button>
+				<button type="button" class="btn btn-warning btn-lg" ng-click="pause()">
+				  PAUSE
+				</button>
+			</span>
+
+			<span ng-switch-when="PAUSE">
+				<button type="button" class="btn btn-success btn-lg" ng-click="resume()">
+				  RESUME
+				</button>
+			</span>
+
+			<span ng-switch-when="DONE">
+				<button type="button" class="btn btn-danger btn-lg" ng-click="exit()">
+				  DONE
+				</button>
+			</span>
+		</div>
+	</div>
+</section>
