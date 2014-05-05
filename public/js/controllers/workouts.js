@@ -7,7 +7,7 @@ angular.module('workout.workoutMode').controller('WorkoutsController', ['$scope'
 
     $scope.exercisePause = false;
 
-    $scope.findOne  = function() {
+    $scope.init  = function() {
         Programs.get({
             programId: $stateParams.programId
         }, function(program) {
@@ -22,7 +22,7 @@ angular.module('workout.workoutMode').controller('WorkoutsController', ['$scope'
     };
 
     $scope.next = function() {
-        if($scope.program.exercises.length <= $scope.currentExerciseIndex+1 && $scope.exercisePause){
+        if($scope.program.exercises.length < $scope.currentExerciseIndex && $scope.exercisePause){
             $scope.workoutState = "DONE";
         } else {
             if($scope.currentExercise.pause !== undefined && !$scope.exercisePause){
