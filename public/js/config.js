@@ -21,19 +21,27 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
         url: '/programs',
         templateUrl: 'views/programs/list.html'
     })
-    .state('program create', 
-    {
+    .state('program create', {
         url: '/programs/create', 
         templateUrl: 'views/programs/create.html'
     })
-    .state('program details', 
-    {
+    .state('program details', {
         url: '/programs/:programId', 
         templateUrl: 'views/programs/details.html'
     })
     .state('program edit', {
         url: '/programs/:programId/edit', 
         templateUrl: 'views/programs/edit.html'
+    })
+    .state('Workout mode', 
+    {
+        url: '/workout', 
+        templateUrl: 'views/workout/error.html'
+    })
+    .state('Specific workout mode', 
+    {
+        url: '/workout/:programId', 
+        templateUrl: 'views/workout/workout.html'
     });
 }]);
 

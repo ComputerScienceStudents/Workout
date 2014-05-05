@@ -28,4 +28,11 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             $scope.programs = programs;
         });
     };
+
+    $scope.startWorkout = function() {
+        if($scope.program !== undefined) {
+            var id = $scope.program._id;
+            $location.path( "/workout/"+id);
+        } 
+    };
 }]);
