@@ -12,11 +12,14 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
             minature: this.minature
         });
         exercise.$save(function(response) {
-            $location.path('exercises/' + response._id);
+            $location.path('exercises');
         });
 
         this.title = '';
-        this.content = '';
+        this.description = '';
+        this.newCategories = '';
+        this.video = '';
+        this.minature = '';
     };
 
     $scope.remove = function(exercise) {
