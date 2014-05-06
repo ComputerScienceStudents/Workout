@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('workout.programscreation').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs', function ($scope, $stateParams, $location, Global, Programs) {
+
     $scope.global = Global;
 
 
@@ -11,6 +12,7 @@ angular.module('workout.programscreation').controller('ProgramsController', ['$s
             lead: this.lead
         });
 
+        
         program.$save(function(response) {
             $location.path('programs/' + response._id);
         });
