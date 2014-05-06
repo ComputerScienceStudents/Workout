@@ -1,9 +1,21 @@
 'use strict';
 
 angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs', function ($scope, $stateParams, $location, Global, Programs) {
+    
+    $scope.create = function() {
+        var program = new Program({
+            title: this.title,
+            description: this.description,
+            lead: this.lead
+        });
+        
+        program.$save(function(response) {
+            $location.path('programs/' + response._id);
+        });
 
-    $scope.create = function(){
-        //$scope.program = new Program();
+        this.title = '';
+        this.description = '';
+        this.lead = '';
     };
 
     $scope.remove = function(){
