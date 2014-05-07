@@ -4,7 +4,6 @@ angular.module('workout.programscreation').controller('ProgramsController', ['$s
 
     $scope.global = Global;
 
-
      $scope.create = function() {
         var program = new Program({
             title: this.title,

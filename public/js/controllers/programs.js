@@ -6,7 +6,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         var program = new Program({
             title: this.title,
             description: this.description,
-            lead: this.lead
+            lead: this.lead,
+            exercise: []
         });
         
         program.$save(function(response) {
