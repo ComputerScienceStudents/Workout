@@ -2,15 +2,13 @@
 
 angular.module('workout.programscreation').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs', function ($scope, $stateParams, $location, Global, Programs) {
 
-    $scope.global = Global;
-
-     $scope.create = function() {
-        var program = new Program({
+    $scope.create = function() {
+        var program = new Programs({
             title: this.title,
             description: this.description,
-            lead: this.lead
+            lead: this.lead,
+            exercise: []
         });
-
         
         program.$save(function(response) {
             $location.path('programs/' + response._id);
@@ -20,4 +18,5 @@ angular.module('workout.programscreation').controller('ProgramsController', ['$s
         this.description = '';
         this.lead = '';
     };
+    
 }]);

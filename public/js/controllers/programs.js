@@ -1,13 +1,15 @@
 'use strict';
 
-angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs', function ($scope, $stateParams, $location, Global, Programs) {
+angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', function ($scope, $stateParams, $location, Global, Programs, Exercises) {
     
+    $scope.exercises = []
+
     $scope.create = function() {
-        var program = new Program({
+        var program = new Programs({
             title: this.title,
             description: this.description,
             lead: this.lead,
-            exercise: []
+            exercises: $scope.exercises
         });
         
         program.$save(function(response) {
@@ -18,6 +20,19 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         this.description = '';
         this.lead = '';
     };
+
+
+
+    $scope.addexercise = function(){
+        var exId = db.exercises.findOne({title:this.exercise_title})._id;
+
+        var exercises = $scope.exercises
+        exercises.push({
+        repetitions: this.repetitions,
+        pause: this.pause,
+        exercise: exId
+    })
+    }
 
     $scope.remove = function(){
 
