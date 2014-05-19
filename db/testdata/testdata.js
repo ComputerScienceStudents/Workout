@@ -40,6 +40,11 @@ var exId2 = db.exercises.findOne({title:'pull-ups'})._id;
 var exId3 = db.exercises.findOne({title:'squats'})._id;
 var exId4 = db.exercises.findOne({title:'stretching'})._id;
 
+var rating = {
+	rates: [],
+	average: 1
+};
+
 var predefinedPrograms = [];
 predefinedPrograms.push({
 	title: 'Example program',
@@ -65,7 +70,8 @@ predefinedPrograms.push({
 	}
 	],
 	lead:'Example lead',
-	description:'Example description'
+	description:'Example description',
+	rating: rating
 })
 
 for (i = 0; i < predefinedPrograms.length; i++) {

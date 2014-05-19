@@ -12,8 +12,6 @@ var ObjectId = mongoose.SchemaTypes.ObjectId;
  * Ratin gSchema
  */
 var RatingSchema = new Schema({
-    program: { type : Schema.ObjectId, ref : 'Program' },
-
     rates: [{
         user: {
             type : Schema.ObjectId, ref : 'User'
@@ -25,13 +23,6 @@ var RatingSchema = new Schema({
 
     average: { type : Number}
 });
-
-/**
- * Validations
- */
-RatingSchema.path('program').validate(function(program) {
-    return program.length;
-}, 'Program cannot be blank');
 
 /**
  * Statics

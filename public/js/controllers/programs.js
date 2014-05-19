@@ -6,6 +6,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
 
     $scope.exercisesCache = [];
 
+    $scope.userRate = 1;
+
     var currentViewId = 0;
 
     $scope.loadExercisesCache = function() {
@@ -101,4 +103,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             $location.path( "/workout/"+id);
         } 
     };
+
+    $scope.rateProgram = function() {
+
+    }
 }]);

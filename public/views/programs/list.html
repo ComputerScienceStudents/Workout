@@ -3,7 +3,11 @@
   	<accordion>
 	  	<accordion-group ng-repeat="program in programs" is-open="isopen">
 	  		<accordion-heading>
-	  			{{program.title}}
+	  			<rating value="userRate" max="10" readonly="false"></rating> 
+				Average: {{program.rating.average}}
+				Rated by: {{program.rating.rates.length}}<br />
+
+	  			<b>{{program.title}}</b>
 	  			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
 	  		</accordion-heading>
 	      	{{program.lead}}<br />
@@ -17,7 +21,10 @@
 	<accordion>
 	  	<accordion-group ng-repeat="program in programs" is-open="isopen">
 	  		<accordion-heading>
-	  			<rating value="program.rating" max="10" readonly="true"></rating>
+		  		<rating value="userRate" max="10" readonly="false"></rating> 
+				Average: {{program.rating.average}}
+				Rated by: {{program.rating.rates.length}}<br />
+
 	  			{{program.title}}
 	  			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
 	  		</accordion-heading>

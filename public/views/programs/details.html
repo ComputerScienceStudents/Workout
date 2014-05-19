@@ -1,5 +1,10 @@
 <section data-ng-controller="ProgramsController" data-ng-init="findOne()">
 	<div class="row">
+		<rating value="userRate" max="10" readonly="false"></rating> 
+		Average: {{program.rating.average}}
+		Rated by: {{program.rating.rates.length}}
+	</div>
+	<div class="row">
 		<h1>{{program.title}}</h1> 
 		<p>{{program.description}}</p><br />
 		<article data-ng-repeat="exercise in program.exercises" class="container-fluid exercise-preview">
