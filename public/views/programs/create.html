@@ -1,3 +1,76 @@
-<section data-ng-controller="ProgramsController">
-	create
+<section data-ng-controller="ProgramsController" ng-init="loadExercisesCache()">
+    <form class="form-horizontal col-md-6 col-md-offset-2" role="form" data-ng-submit="create()">
+        <h3 class="col-md-offset-4">Add a new program</h3>
+    </br>
+    <div class="form-group">
+        <label for="title" class="col-md-2 control-label">Title</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title of the program" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lead" class="col-md-2 control-label">Lead</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="lead" id="lead" placeholder="Program highlights" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="col-md-2 control-label">Description</label>
+        <div class="col-md-10">
+            <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <h4 for="description" class="col-md-2 control-label">Excersises</h4>
+    </div>
+    <article data-ng-repeat="exercise in exercises" class="container-fluid exercise-preview">
+        <div class="row" ng-show="exercise.title">
+            <div class="col-md-4">
+                <img width="185" src="{{exercise.minature}}">
+            </div>
+            <div class="col-md-8">
+                <div class="col-md-offset-10"><a ng-click='removeExercise(exercise.viewId)'>x remove</a></div>
+                <h4>{{exercise.title}}</h4>
+                <div>{{exercise.description}}</div>
+                <div ng-show="exercise.repetitions">
+                    <b>Number of repetitions: {{exercise.repetitions}}</b>
+                </div>
+                <div ng-show="exercise.pause">
+                    <b>Pause: {{exercise.pause}} s</b>
+                </div>
+            </div>
+        </div>
+    </article>
+    <div class="form-group">
+        <label for="exerciseName" class="col-md-2 control-label">Excercise</label>
+        <div class="col-md-10">
+            <input type="list" class="form-control" ui-select2="select2Options" data-ng-model="exerciseName" id="exerciseName" placeholder="search for exercise...">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="repetitions" class="col-md-2 control-label">Repetitions</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="repetitions" id="repetitions" placeholder="Rome was not built in a day">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="breakTime" class="col-md-2 control-label">Pause time</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="breakTime" id="breakTime" placeholder="(in seconds)">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-4">
+            <button class="btn btn-default" type="button" ng-click="addExercise()">Add excercise</button>
+        </div>
+    </div>
+
+    <br/>
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-6">
+            <button class="btn btn-default" type="submit">Create program</button>&nbsp;
+            or&nbsp;<a class="show-login" href="/programs">cancel</a>
+        </div>
+    </div>
+</form>
 </section>
