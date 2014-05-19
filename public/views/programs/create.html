@@ -1,65 +1,58 @@
 <section data-ng-controller="ProgramsController">
-<form class="form-horizontal col-md-6 col-md-offset-2" role="form" data-ng-submit="create()">
+    <form class="form-horizontal col-md-6 col-md-offset-2" role="form" data-ng-submit="create()">
         <h3 class="col-md-offset-4">Add a new program</h3>
     </br>
-        <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Title</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title of the program" required>
-            </div>
+    <div class="form-group">
+        <label for="title" class="col-md-2 control-label">Title</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title of the program" required>
         </div>
-        <div class="form-group">
-            <label for="lead" class="col-md-2 control-label">Lead</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" data-ng-model="lead" id="lead" placeholder="Program highlights" required>
-            </div>
+    </div>
+    <div class="form-group">
+        <label for="lead" class="col-md-2 control-label">Lead</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="lead" id="lead" placeholder="Program highlights" required>
         </div>
-        <div class="form-group">
-            <label for="description" class="col-md-2 control-label">Description</label>
-            <div class="col-md-10">
-                <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
-            </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="col-md-2 control-label">Description</label>
+        <div class="col-md-10">
+            <textarea data-ng-model="description" id="description" cols="30" rows="10" placeholder="Description" class="form-control" required></textarea>
         </div>
-        <div class="form-group">
-            <label for="description" class="col-md-2 control-label">Excersises</label>
-           <!--- <article data-ng-repeat="exercise in program.excercises" class="container-fluid new-program-preview">
-                <div class="row">
-                    <div class="col-md-3 col-sm-4">
-                        <img width="185" src="{{exercise.ref.minature}}">
-                    </div>
-                    <div class="col-md-9 col-sm-8">
-                        <h4><a data-ng-href="#!/exercises/{{exercise.ref._id}}">{{exercise.ref.title}}</a></h4>
-                        <h4><a href="{{exercise.ref.video}}">{{exercise.ref.title}}</a></h4>
-                        <div>Sessions: {{exercise.ref.repeats}}</div>
-                        <div>Repeats: {{exercise.ref.pause}}</div>
-                        <span>{{exercise.ref.created | date:'medium'}}</span> 
-                    </div>
-                </div>
-            </article> -->
+    </div>
+    <div class="form-group">
+        <h4 for="description" class="col-md-2 control-label">Excersises</h4>
+    </div>         
+    <div class="form-group">
+        <label for="exerciseName" class="col-md-2 control-label">Excercise</label>
+        <div class="col-md-10">
+            <input type="list" class="form-control" data-ng-model="exerciseName" id="exerciseName" placeholder="search for exercise...">
         </div>
-         
-        <div class="form-group">
-            <label for="excersice-name" class="col-md-2 control-label">Excercise</label>
-            <div class="col-md-10">
-                <input type="list" class="form-control" data-ng-model="excersice-name" id="excersice-name" placeholder="<Tutaj ma być lista drop-down ćwiczeń>">
-            </div>
-            <label for="repeatations" class="col-md-2 control-label">Executions</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" data-ng-model="repeatations" id="repeatations" placeholder="Number of tiems You have to execute specific excercise">
-            </div>
-            <label for="break-time" class="col-md-2 control-label">Pause</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" data-ng-model="break-time" id="break-time" placeholder="Amount of time You should pause after the session (in seconds)">
-            </div>
-            <div class="col-md-offset-2 col-md-6">
-                <button class="btn btn-default" type="submit">Add excercise</button>
-            </div>
+    </div>
+    <div class="form-group">
+        <label for="repetitions" class="col-md-2 control-label">Repetitions</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="repetitions" id="repetitions" placeholder="Rome was not built in a day">
         </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-6">
-                <button class="btn btn-default" type="submit">Create</button>&nbsp;
-                or&nbsp;<a class="show-login" href="/programs">cancel</a>
-            </div>
+    </div>
+    <div class="form-group">
+        <label for="breakTime" class="col-md-2 control-label">Pause time</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" data-ng-model="breakTime" id="breakTime" placeholder="(in seconds)">
         </div>
-    </form>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-4">
+            <button class="btn btn-default" type="button" ng-click="addExercise()">Add excercise</button>
+        </div>
+    </div>
+
+    <br/>
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-6">
+            <button class="btn btn-default" type="submit">Create program</button>&nbsp;
+            or&nbsp;<a class="show-login" href="/programs">cancel</a>
+        </div>
+    </div>
+</form>
 </section>

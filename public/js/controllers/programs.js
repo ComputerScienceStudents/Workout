@@ -22,9 +22,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         $scope.exercises = [];
     };
 
-
-
-    $scope.addexercise = function(){
+    $scope.addExercise = function(){
+        console.log("addExercise here");
         var exId = db.exercises.findOne({title:this.exercise_title})._id;
         if (!exId) {
             return next(new Error('Failed to load exercise: ' + exercise_title));
@@ -37,7 +36,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             $scope.exercises = exercises;
 
         }
-    }
+    };
 
     $scope.remove = function(){
 
