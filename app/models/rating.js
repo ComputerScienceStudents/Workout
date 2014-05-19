@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 var ObjectId = mongoose.SchemaTypes.ObjectId;
 
 /**
- * Rating Schema
+ * Ratin gSchema
  */
 var RatingSchema = new Schema({
     program: { type : Schema.ObjectId, ref : 'Program' },
@@ -21,7 +21,9 @@ var RatingSchema = new Schema({
         rate: {
             type: Number
         }
-    }]
+    }],
+
+    average: { type : Number}
 });
 
 /**
@@ -40,4 +42,4 @@ RatingSchema.statics.load = function(id, cb) {
     }).populate('user', 'name username').exec(cb);
 };
 
-mongoose.model('Program', ProgramSchema);
+mongoose.model('Rating', RatingSchema);

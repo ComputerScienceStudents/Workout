@@ -49,6 +49,11 @@ var ProgramSchema = new Schema({
         type: String,
         default: '',
         trim: false
+    },
+
+    rating: {
+        type: ObjectId,
+        ref: 'Rating'
     }
 });
 
