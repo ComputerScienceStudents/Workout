@@ -6,6 +6,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
 
     $scope.exercisesCache = [];
 
+    var currentViewId = 0;
+
     $scope.loadExercisesCache = function() {
         Exercises.query(function(exercises) {
             $scope.exercisesCache = exercises;
@@ -31,25 +33,31 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
     };
 
     $scope.addExercise = function(){
-        console.log("addExercise here");
-        console.log($scope.exercisesCache.length);
+        $scope.exercises.push({
+            repetitions: $scope.repetitions,
+            pause: $scope.breakTime,
+            exercise: $scope.exerciseName.id,
+            title: $scope.exerciseName.text,
+            description: $scope.exerciseName.description,
+            minature: $scope.exerciseName.minature,
+            viewId: currentViewId++
+        });
+        $scope.clearExerciseForm();
+    };
 
-        // var exId = db.exercises.findOne({title:this.exercise_title})._id;
-        // if (!exId) {
-        //     return next(new Error('Failed to load exercise: ' + exercise_title));
-        // }else{
-        //     var exercises = $scope.exercises;
-        //     exercises.push({
-        //         repetitions: this.repetitions,
-        //         pause: this.pause,
-        //         exercise: exId});
-        //     $scope.exercises = exercises;
-        // }
+    $scope.clearExerciseForm = function() {
+        $scope.repetitions = "";
+        $scope.breakTime = "";
+        $scope.exerciseName = undefined;
+    }
+
+    $scope.removeExercise = function(viewId) {
+        $scope.exercises = $scope.exercises.filter(function(e) { return e.viewId !== viewId});
     };
 
     function format(exercise) {
         return "<div><h4>" + exercise.text + "</h4>" + exercise.description + "<br/><img width='125' src='" + exercise.minature + "'/></div>";
-    }
+    };
 
     $scope.select2Options = {
         query: function (query) {
