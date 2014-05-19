@@ -1,8 +1,16 @@
 'use strict';
 
 angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', function ($scope, $stateParams, $location, Global, Programs, Exercises) {
-    
+
     $scope.exercises = [];
+
+    $scope.exercisesCache = [];
+
+    $scope.loadExercisesCache = function() {
+        Exercises.query(function(exercises) {
+            $scope.exercisesCache = exercises;
+        });
+    };
 
     $scope.create = function() {
         var program = new Programs({
@@ -24,17 +32,25 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
 
     $scope.addExercise = function(){
         console.log("addExercise here");
-        var exId = db.exercises.findOne({title:this.exercise_title})._id;
-        if (!exId) {
-            return next(new Error('Failed to load exercise: ' + exercise_title));
-        }else{
-            var exercises = $scope.exercises;
-            exercises.push({
-                repetitions: this.repetitions,
-                pause: this.pause,
-                exercise: exId});
-            $scope.exercises = exercises;
+        console.log($scope.exercisesCache.length);
 
+        // var exId = db.exercises.findOne({title:this.exercise_title})._id;
+        // if (!exId) {
+        //     return next(new Error('Failed to load exercise: ' + exercise_title));
+        // }else{
+        //     var exercises = $scope.exercises;
+        //     exercises.push({
+        //         repetitions: this.repetitions,
+        //         pause: this.pause,
+        //         exercise: exId});
+        //     $scope.exercises = exercises;
+        // }
+    };
+
+    $scope.select2Options = {
+        query: function (query) {
+            var results = $scope.exercisesCache.filter(function(e) { return e.title.indexOf(query.term) !== -1}).map(function(e) {return {id: e._id, text: e.title}});
+            query.callback({results: results});
         }
     };
 
@@ -52,7 +68,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         }, function(program) {
             $scope.program = program;
         });
-            
+
     };
 
     $scope.find = function () {
