@@ -16,7 +16,10 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
     }).state('create exercise', {
         url: '/exercises/create',
         templateUrl: 'views/exercises/create.html'
-    })
+    }).state('exercise details', {
+        url: '/exercises/:exerciseId',
+        templateUrl: 'views/exercises/details.html'
+    })    
     .state('all programs', {
         url: '/programs',
         templateUrl: 'views/programs/list.html'

@@ -1,0 +1,17 @@
+#exercise #ytplayer{
+	display: block;
+	margin: 5px auto;
+}
+
+#exercise .categories{
+	margin: 5px;
+}
+
+#exercise .category{
+	margin: 0 2px;
+}
+
+#exercise .description{
+	margin: 5px;
+	font-style: italic;
+}

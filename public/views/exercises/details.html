@@ -1,0 +1,10 @@
+<section id="exercise" class="panel panel-default" data-ng-controller="ExercisesController" data-ng-init="findOne()">
+	<h1>{{exercise.title}}</h2>
+		<div class="categories">
+			<span ng-repeat="category in exercise.categories" class="category label label-info">{{category}}</span>
+		</div>
+		<p class="description">{{exercise.description}}</p>
+		<iframe id="ytplayer" type="text/html" width="640" height="390"
+  ng-src="{{videoLink}}" allowfullscreen frameborder="0"
+  frameborder="0"/>
+</section>
