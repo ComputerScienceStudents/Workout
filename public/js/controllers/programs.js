@@ -47,11 +47,19 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         // }
     };
 
+    function format(exercise) {
+        return "<div><h4>" + exercise.text + "</h4>" + exercise.description + "<br/><img width='125' src='" + exercise.minature + "'/></div>";
+    }
+
     $scope.select2Options = {
         query: function (query) {
-            var results = $scope.exercisesCache.filter(function(e) { return e.title.indexOf(query.term) !== -1}).map(function(e) {return {id: e._id, text: e.title}});
+            var results = $scope.exercisesCache
+                .filter(function(e) { return e.title.indexOf(query.term) !== -1})
+                .map(function(e) {return {id: e._id, text: e.title, minature: e.minature, description: e.description}});
             query.callback({results: results});
-        }
+        },
+        formatResult: format,
+        escapeMarkup: function(m) { return m; }
     };
 
     $scope.remove = function(){
