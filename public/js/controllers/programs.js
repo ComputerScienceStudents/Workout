@@ -19,7 +19,9 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             title: this.title,
             description: this.description,
             lead: this.lead,
-            exercises: $scope.exercises
+            exercises: $scope.exercises.map(function(e) { 
+                return {repetitions: e.repetitions, pause: e.pause, exercise: e.exercise};
+            })
         });
         
         program.$save(function(response) {
