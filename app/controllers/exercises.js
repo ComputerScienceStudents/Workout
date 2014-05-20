@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  * Find exercise  by id
  */
 exports.exercise = function(req, res, next, id) {
-    Exercise.load(id, function(err, exercise) {
+    Exercise.findOne({_id: id}).exec(function(err, exercise) {
         if (err) return next(err);
         if (!exercise) return next(new Error('Failed to load exercise ' + id));
         req.exercise = exercise;
