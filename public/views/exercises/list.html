@@ -11,13 +11,16 @@
 		<div class="col-md-8">
 			<h3>exercises</h3>
 			<article data-ng-repeat="exercise in exercises" class="container-fluid exercise-preview">
-				<div class="row">
+				<div class="row exercise">
 					<div class="col-md-3 col-sm-4">
 						<img width="185" src="{{exercise.minature}}">
 					</div>
 					<div class="col-md-9 col-sm-8">
 						<!-- <h4><a data-ng-href="#!/exercises/{{exercise._id}}">{{exercise.title}}</a></h4> -->
 						<h4><a href="#!/exercises/{{exercise._id}}">{{exercise.title}}</a></h4>
+						<div class="categories">
+							<span ng-repeat="category in exercise.categories" class="category label label-info">{{category}}</span>
+						</div>
 						<div>{{exercise.description}}</div>
 			        	<!-- <span>{{exercise.created | date:'medium'}}</span>  -->
 					<div>
