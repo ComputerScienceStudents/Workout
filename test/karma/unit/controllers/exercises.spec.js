@@ -62,7 +62,7 @@
 			            scope.video = "http://youtube.com/?v=kfldasjfkl";
 			            scope.minature = "http://doamin.com/min.png";
 
-	                    $httpBackend.expectPOST('exercises', formData()).respond(function() {return {}});
+	                    $httpBackend.expectPOST('exercises', formData()).respond(function() {return {};});
 
 	                    scope.create();
 	                    $httpBackend.flush();

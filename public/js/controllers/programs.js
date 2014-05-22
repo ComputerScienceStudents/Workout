@@ -65,7 +65,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
                     minature: exercise.minature,
                     viewId: currentViewId++
                 });
-            };
+            }
         });
     };
 
@@ -86,21 +86,21 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         form.repetitions = "";
         form.breakTime = "";
         form.exerciseName = undefined;
-    }
+    };
 
     $scope.removeExercise = function(viewId) {
-        $scope.exercises = $scope.exercises.filter(function(e) { return e.viewId !== viewId});
+        $scope.exercises = $scope.exercises.filter(function(e) { return e.viewId !== viewId;});
     };
 
     function format(exercise) {
         return "<div><h4>" + exercise.text + "</h4>" + exercise.description + "<br/><img width='125' src='" + exercise.minature + "'/></div>";
-    };
+    }
 
     $scope.select2Options = {
         query: function (query) {
             var results = $scope.exercisesCache
-                .filter(function(e) { return e.title.indexOf(query.term) !== -1})
-                .map(function(e) {return {id: e._id, text: e.title, minature: e.minature, description: e.description}});
+                .filter(function(e) { return e.title.indexOf(query.term) !== -1;})
+                .map(function(e) {return {id: e._id, text: e.title, minature: e.minature, description: e.description};});
             query.callback({results: results});
         },
         formatResult: format,

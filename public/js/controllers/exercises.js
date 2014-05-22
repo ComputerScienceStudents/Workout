@@ -11,7 +11,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
             video: this.video,
             minature: this.minature
         });
-        exercise.$save(function(response) {
+        exercise.$save(function() {
             $location.path('exercises');
         });
 
