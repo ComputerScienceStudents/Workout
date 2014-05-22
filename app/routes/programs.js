@@ -1,10 +1,10 @@
 'use strict';
 
-// Articles routes use articles controller
+// Programs routes use Programs controller
 var programs = require('../controllers/programs');
 var authorization = require('./middlewares/authorization');
 
-// Article authorization helpers
+// Program authorization helpers
 var hasAuthorization = function(req, res, next) {
 	if (req.program.user.id !== req.user.id) {
         return res.send(401, 'User is not authorized');

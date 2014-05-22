@@ -54,3 +54,7 @@ ul,li.categories {
 .bold {
     font-weight: bold;
 }
+
+.beingDragged {
+    border: 4px solid #ccc !important;
+}
