@@ -65,7 +65,8 @@ predefinedPrograms.push({
 	}
 	],
 	lead:'Example lead',
-	description:'Example description'
+	description:'Example description',
+	user: null
 })
 
 for (i = 0; i < predefinedPrograms.length; i++) {

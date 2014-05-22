@@ -8,12 +8,6 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
 
     var currentViewId = 0;
 
-    $scope.loadExercisesCache = function() {
-        Exercises.query(function(exercises) {
-            $scope.exercisesCache = exercises;
-        });
-    };
-
     $scope.create = function() {
         var program = new Programs({
             title: this.title,
@@ -31,7 +25,47 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         this.title = '';
         this.description = '';
         this.lead = '';
-        $scope.exercises = [];
+        this.exercises = [];
+    };
+
+    $scope.update = function(){
+        var program = new Programs({
+            _id: $stateParams.programId,
+            title: this.title,
+            description: this.description,
+            lead: this.lead,
+            exercises: $scope.exercises.map(function(e) { 
+                return {repetitions: e.repetitions, pause: e.pause, exercise: e.exercise};
+            })
+        });
+
+        Programs.update(program);
+    };
+
+    $scope.loadExercisesCache = function() {
+        Exercises.query(function(exercises) {
+            $scope.exercisesCache = exercises;
+        });
+    };
+
+    $scope.fillForUpdate = function() {
+        Programs.get({programId: $stateParams.programId}, function(program) {
+            $scope.title = program.title;
+            $scope.lead = program.lead;
+            $scope.description = program.description;
+            for (var i = 0; i < program.exercises.length; i++) {
+                var exercise = program.exercises[i].exercise;
+                $scope.exercises.push({
+                    repetitions: program.exercises[i].repetitions,
+                    pause: program.exercises[i].pause,
+                    exercise: exercise._id,
+                    title: exercise.title,
+                    description: exercise.description,
+                    minature: exercise.minature,
+                    viewId: currentViewId++
+                });
+            };
+        });
     };
 
     $scope.addExercise = function(){
@@ -44,13 +78,13 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             minature: $scope.exerciseName.minature,
             viewId: currentViewId++
         });
-        $scope.clearExerciseForm();
+        $scope.clearExerciseForm($scope);
     };
 
-    $scope.clearExerciseForm = function() {
-        $scope.repetitions = "";
-        $scope.breakTime = "";
-        $scope.exerciseName = undefined;
+    $scope.clearExerciseForm = function(form) {
+        form.repetitions = "";
+        form.breakTime = "";
+        form.exerciseName = undefined;
     }
 
     $scope.removeExercise = function(viewId) {
@@ -73,10 +107,6 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
     };
 
     $scope.remove = function(){
-
-    };
-
-    $scope.edit = function(){
 
     };
 
