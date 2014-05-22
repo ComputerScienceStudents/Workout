@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', function ($scope, $stateParams, $location, Global, Programs, Exercises) {
+    $scope.global = Global;
 
     $scope.exercises = [];
 

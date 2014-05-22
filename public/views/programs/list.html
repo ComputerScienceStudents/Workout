@@ -9,6 +9,7 @@
 	      	{{program.lead}}<br />
       	    <div class="btn-group">
 		        <a class="btn btn-primary" data-ng-href="#!/programs/{{program._id}}" ng-model="checkModel.left" btn-checkbox>Details</a>
+		        <a class="btn btn-primary" data-ng-href="#!/programs/{{program._id}}/edit" ng-model="checkModel.left" ng-show="program.user.name === global.user.name" btn-checkbox>Edit</a>
 		        <a type="button" data-ng-href="#!/workout/{{program._id}}" class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Run</a>
 		    </div>
 	    </accordion-group>
