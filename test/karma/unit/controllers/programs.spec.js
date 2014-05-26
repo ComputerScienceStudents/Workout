@@ -53,7 +53,21 @@
                         expect(scope.exerciseName).toBeUndefined();
                 	});
             });
-            
+
+            describe('$scope.removeExercise() method', function () {
+                
+                it('removes exercise with given viewId from $scope.exercises', function() {
+                        
+                        // arange
+                        scope.exercises = [ {viewId: 1, description: "exercise #1"}, {viewId: 2, description: "exercise #2"} ];
+                        
+                        // act
+                        scope.removeExercise(1);
+
+                        // assert
+                        expect(scope.exercises.length).toBe(1);
+                    });
+            });
     	});
     });
 })();
