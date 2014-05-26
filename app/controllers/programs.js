@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  * Find program by id
  */
 exports.program = function(req, res, next, id) {
-    Program.findOne({_id: id}).populate('exercises.exercise').exec(function(err, program) {
+    Program.findOne({_id: id}).populate('exercises.exercise').populate('user', 'name username').exec(function(err, program) {
         if (err) return next(err);
         if (!program) return next(new Error('Failed to load program ' + id));
         req.program = program;
@@ -44,7 +44,7 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
     var program = req.program;
-
+    program.user = req.user;
     program = _.extend(program, req.body);
 
     program.save(function(err) {
@@ -88,7 +88,7 @@ exports.show = function(req, res) {
  * List of Programs
  */
 exports.all = function(req, res) {
-    Program.find().sort('-created').exec(function(err, programs) {
+    Program.find().sort('-created').populate('user', 'name username').exec(function(err, programs) {
         if (err) {
             res.render('error', {
                 status: 500

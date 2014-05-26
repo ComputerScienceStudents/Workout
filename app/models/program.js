@@ -50,10 +50,13 @@ var ProgramSchema = new Schema({
         default: '',
         trim: false
     },
-
     rating: {
         type: ObjectId,
         ref: 'Rating'
+    },
+    user: {
+        type: Schema.ObjectId,
+        ref: 'User'
     }
 });
 

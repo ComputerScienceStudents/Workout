@@ -4,6 +4,7 @@ angular.module('workout.timer', [])
   .directive('timer', [
 
     function() {
+      
       return {
         replace: true,
         template: "<div class='timer'>" +

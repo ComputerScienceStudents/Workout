@@ -10,6 +10,7 @@
     "bootstrap": "3.0.3",
     "angular-bootstrap": "0.10.0",
     "angular-ui-router": "#master",
-    "angular-ui-select2": "~0.0.5"
+    "angular-ui-select2": "~0.0.5",
+    "jquery-ui": "latest"
   }
 }

@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('workout.exercises').controller('ExercisesController', ['$scope', '$stateParams', '$location', 'Global', 'Exercises', function ($scope, $stateParams, $location, Global, Exercises) {
+angular.module('workout.exercises').controller('ExercisesController', ['$scope', '$stateParams', '$location', 'Global', 'Exercises', '$sce', function ($scope, $stateParams, $location, Global, Exercises, $sce) {
     $scope.global = Global;
+
 
     $scope.create = function() {
         var exercise = new Exercises({
@@ -11,7 +12,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
             video: this.video,
             minature: this.minature
         });
-        exercise.$save(function(response) {
+        exercise.$save(function() {
             $location.path('exercises');
         });
 
@@ -64,6 +65,7 @@ angular.module('workout.exercises').controller('ExercisesController', ['$scope',
             exerciseId: $stateParams.exerciseId
         }, function(exercise) {
             $scope.exercise = exercise;
+            $scope.videoLink = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + $scope.exercise.video);
         });
     };
 

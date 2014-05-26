@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 angular.module('workout.workoutMode')
   .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs',
     function($stateParams, $location, Global, Programs) {
       return {
         scope: {}, // {} = isolate, true = child, false/undefined = no change
-        controller: function($scope, $element, $attrs, $transclude) {
+        controller: function($scope) {
           $scope.global = Global;
 
           $scope.workoutState = "NOT_RUNNING";
@@ -24,7 +24,7 @@ angular.module('workout.workoutMode')
         },
         templateUrl: 'templates/workoutTemplate.html',
         replace: true,
-        link: function($scope, iElm, iAttrs, controller) {
+        link: function($scope) {
 
           $scope.start = function() {
             $scope.workoutState = "RUNNING";
