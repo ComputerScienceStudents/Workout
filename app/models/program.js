@@ -54,6 +54,10 @@ var ProgramSchema = new Schema({
     user: {
         type: Schema.ObjectId,
         ref: 'User'
+    },
+
+    public: {
+        type: Boolean
     }
 });
 
