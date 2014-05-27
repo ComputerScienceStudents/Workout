@@ -16,7 +16,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             lead: this.lead,
             exercises: $scope.exercises.map(function(e) { 
                 return {repetitions: e.repetitions, pause: e.pause, exercise: e.exercise};
-            })
+            }),
+            public: this.public
         });
         
         program.$save(function(response) {
@@ -27,6 +28,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         this.description = '';
         this.lead = '';
         this.exercises = [];
+        this.public = false
     };
 
     $scope.update = function(){
@@ -37,7 +39,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             lead: this.lead,
             exercises: $scope.exercises.map(function(e) { 
                 return {repetitions: e.repetitions, pause: e.pause, exercise: e.exercise};
-            })
+            }),
+            public: this.public
         });
 
         Programs.update(program);
@@ -66,6 +69,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
                     viewId: currentViewId++
                 });
             }
+            $scope.public = program.public;
         });
     };
 
@@ -123,6 +127,12 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
     $scope.find = function () {
         Programs.query(function(programs) {
             $scope.programs = programs;
+            $scope.publicPrograms = [];
+            for(var i=0;i<programs.length;i++){
+                if(programs[i].public && (programs[i].user==null || programs[i].user.name === $scope.global.user.name) ){
+                    $scope.publicPrograms.push(programs[i]);
+                }
+            }
         });
     };
 
