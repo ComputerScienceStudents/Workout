@@ -1,5 +1,6 @@
 db.programs.remove({});
 db.exercises.remove({});
+db.ratings.remove({});
 
 var predefinedExercises = [];
 predefinedExercises.push({
@@ -40,6 +41,16 @@ var exId2 = db.exercises.findOne({title:'pull-ups'})._id;
 var exId3 = db.exercises.findOne({title:'squats'})._id;
 var exId4 = db.exercises.findOne({title:'stretching'})._id;
 
+var exampleRating = {
+	rates: [],
+	average: 0,
+	usersCount: 0
+};
+
+db.ratings.insert(exampleRating);
+
+var ratingId = db.ratings.findOne({average: 0})._id;
+
 var predefinedPrograms = [];
 predefinedPrograms.push({
 	title: 'Example program',
@@ -66,6 +77,7 @@ predefinedPrograms.push({
 	],
 	lead:'Example lead',
 	description:'Example description',
+	rating: ratingId,
 	user: null
 })
 
