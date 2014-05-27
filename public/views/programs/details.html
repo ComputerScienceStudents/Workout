@@ -1,8 +1,8 @@
 <section data-ng-controller="ProgramsController" data-ng-init="findOne()">
 	<div class="row">
-		<rating value="userRate" max="10" readonly="false"></rating> 
+		<rating value="program.rating.userRate" max="10" readonly="false" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'"></rating> 
 		Average: {{program.rating.average}}
-		Rated by: {{program.rating.rates.length}}
+		Rated by: {{program.rating.usersCount}}
 	</div>
 	<div class="row">
 		<h1>{{program.title}}</h1> 

@@ -21,16 +21,8 @@ var RatingSchema = new Schema({
         }
     }],
 
-    average: { type : Number}
+    average: { type : Number},
+    usersCount: { type : Number}
 });
-
-/**
- * Statics
- */
-RatingSchema.statics.load = function(id, cb) {
-    this.findOne({
-        _id: mongoose.Types.ObjectId(id)
-    }).populate('user', 'name username').exec(cb);
-};
 
 mongoose.model('Rating', RatingSchema);

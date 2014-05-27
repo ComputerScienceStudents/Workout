@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  * Find rating by id
  */
 exports.rating = function(req, res, next, id) {
-    Rating.findOne({_id: id}).populate('exercises.exercise').exec(function(err, rating) {
+    Rating.findOne({_id: id}).exec(function(err, rating) {
         if (err) return next(err);
         if (!rating) return next(new Error('Failed to load rating ' + id));
         req.rating = rating;
@@ -45,7 +45,25 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
     var rating = req.rating;
 
-    rating = _.extend(rating, req.body);
+    var value = req.param('value');
+    var userId = req.user._id;
+
+    var average = 0;
+    var updated = false;
+    for(var i = 0; i < rating.rates.length; i++) {
+        if(rating.rates[i].user.equals(userId)) {
+            updated = true;
+            rating.rates[i].rate = value;
+        } 
+        average += rating.rates[i].rate;
+    }
+    if(!updated) {
+        rating.rates.push({user: userId, rate: value});
+        average += value;
+    }
+
+    rating.average = average/rating.rates.length;
+    rating.usersCount = rating.rates.length;
 
     rating.save(function(err) {
         if (err) {
@@ -59,29 +77,19 @@ exports.update = function(req, res) {
     });
 };
 
-/**
- * Delete an rating
- */
-exports.destroy = function(req, res) {
-    var rating = req.rating;
-
-    rating.remove(function(err) {
-        if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                rating: rating
-            });
-        } else {
-            res.jsonp(rating);
-        }
-    });
-};
 
 /**
  * Show an rating
  */
 exports.show = function(req, res) {
-    res.jsonp(req.rating);
+    var userRate = 0;
+    var userId = req.user._id;
+    for(var i = 0; i < req.rating.rates.length; i++) {
+        if(req.rating.rates[i].user.equals(userId)) {
+            userRate = req.rating.rates[i].rate;
+        }
+    }
+    res.jsonp({average: req.rating.average, _id: req.rating._id, usersCount: req.rating.usersCount, userRate: userRate});
 };
 
 /**

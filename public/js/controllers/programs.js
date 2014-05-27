@@ -1,15 +1,23 @@
 'use strict';
 
-angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', function ($scope, $stateParams, $location, Global, Programs, Exercises) {
+angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', 'Ratings', function ($scope, $stateParams, $location, Global, Programs, Exercises, Ratings) {
     $scope.global = Global;
 
     $scope.exercises = [];
 
     $scope.exercisesCache = [];
 
-    $scope.userRate = 1;
+    $scope.userRate = 0;
 
     var currentViewId = 0;
+
+    $scope.$watch('program.rating.userRate', function(newValue, oldValue) {
+        $scope.program.rating.userRate = newValue;
+        var ratingId = $scope.program.rating._id;
+        saveRatings(ratingId, newValue);
+        console.log(getRatings(ratingId));
+        $scope.findOne();
+    });
 
     $scope.create = function() {
         var program = new Programs({
@@ -119,7 +127,6 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         }, function(program) {
             $scope.program = program;
         });
-
     };
 
     $scope.find = function () {
@@ -135,7 +142,17 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         } 
     };
 
-    $scope.rateProgram = function() {
+    //helpers
+    function saveRatings(id, value) {
+        Ratings.update({
+            ratingId: id,
+            value: value
+        });
+    }
 
+    function getRatings(id) {
+        return Ratings.show({
+            ratingId: id
+        });
     }
 }]);
