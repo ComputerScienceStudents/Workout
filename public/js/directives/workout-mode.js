@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('workout.workoutMode')
-  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs',
+  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs','Stats',
     function($stateParams, $location, Global, Programs) {
       return {
         scope: {}, // {} = isolate, true = child, false/undefined = no change
@@ -63,29 +63,32 @@ angular.module('workout.workoutMode')
             $scope.currentExerciseIndex = 0;
             $scope.exercises = {};
             while($scope.program.exercises.length < $scope.currentExerciseIndex){
-              $scope.currentExercise
-              if(!exercises[$scope.currentExercise.exercise]){
+              $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
+
+              var tmp = $scope.currentExercise.exercise.title;
+
+              if(!$scope.exercises[$scope.currentExercise.exercise]){
                 if($scope.currentExercise.repetitions){
-                  $scope.exercises.push(
-                    $scope.currentExercise.exercise : $scope.currentExercise.repetitions
-                  );
+                  $scope.exercises.push({
+                    tmp : $scope.currentExercise.repetitions
+                  });
                 }
                 else{
-                  $scope.exercises.push(
-                    $scope.currentExercise.exercise : $scope.currentExercise.lenght
-                  ); 
+                  $scope.exercises.push({
+                    tmp : $scope.currentExercise.lenght
+                  }); 
                 }
               }
               else{
                 if($scope.currentExercise.repetitions){
-                  $scope.exercises.push(
-                    $scope.currentExercise.exercise : $scope.currentExercise.repetitions+$scope.exercises[$scope.currentExercise.exercise]
-                  );
+                  $scope.exercises.push({
+                    tmp : $scope.currentExercise.repetitions+$scope.exercises[tmp]
+                  });
                 }
                 else{
-                  $scope.exercises.push(
-                    $scope.currentExercise.exercise : $scope.currentExercise.lenght+$scope.exercises[$scope.currentExercise.exercise]
-                  ); 
+                  $scope.exercises.push({
+                    tmp : $scope.currentExercise.lenght+$scope.exercises[tmp]
+                  }); 
                 }
               }
               $scope.currentExerciseIndex++;
