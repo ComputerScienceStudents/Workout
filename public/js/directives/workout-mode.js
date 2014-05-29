@@ -58,7 +58,44 @@ angular.module('workout.workoutMode')
             $scope.workoutState = "DONE";
           };
 
+          $scope.update = function(){
+            //loop iterating over all program's exercises, adding all of them together
+            $scope.currentExerciseIndex = 0;
+            $scope.exercises = {};
+            while($scope.program.exercises.length < $scope.currentExerciseIndex){
+              $scope.currentExercise
+              if(!exercises[$scope.currentExercise.exercise]){
+                if($scope.currentExercise.repetitions){
+                  $scope.exercises.push(
+                    $scope.currentExercise.exercise : $scope.currentExercise.repetitions
+                  );
+                }
+                else{
+                  $scope.exercises.push(
+                    $scope.currentExercise.exercise : $scope.currentExercise.lenght
+                  ); 
+                }
+              }
+              else{
+                if($scope.currentExercise.repetitions){
+                  $scope.exercises.push(
+                    $scope.currentExercise.exercise : $scope.currentExercise.repetitions+$scope.exercises[$scope.currentExercise.exercise]
+                  );
+                }
+                else{
+                  $scope.exercises.push(
+                    $scope.currentExercise.exercise : $scope.currentExercise.lenght+$scope.exercises[$scope.currentExercise.exercise]
+                  ); 
+                }
+              }
+              $scope.currentExerciseIndex++;
+            }
+
+            Stats.update($scope.exercises);
+          };
+
           $scope.exit = function() {
+            $scope.update();
             $location.path("/");
           };
         }
