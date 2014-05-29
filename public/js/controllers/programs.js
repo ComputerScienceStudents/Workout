@@ -38,7 +38,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         this.description = '';
         this.lead = '';
         this.exercises = [];
-        this.public = false
+        this.public = false;
     };
 
     $scope.update = function(){
@@ -138,7 +138,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             $scope.programs = programs;
             $scope.publicPrograms = [];
             for(var i=0;i<programs.length;i++){
-                if(programs[i].public && (programs[i].user==null || programs[i].user.name === $scope.global.user.name) ){
+                if(programs[i].public && (programs[i].user===null || programs[i].user.name === $scope.global.user.name) ){
                     $scope.publicPrograms.push(programs[i]);
                 }
             }

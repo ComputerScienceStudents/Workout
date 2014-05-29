@@ -22,7 +22,7 @@ var UserSchema = new Schema({
     },
 
     stats: {
-        type: ObjectID,
+        type: ObjectId,
         ref: 'Stats'
     },
 
