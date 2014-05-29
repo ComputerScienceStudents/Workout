@@ -65,7 +65,6 @@ angular.module('workout.workoutMode')
             while($scope.program.exercises.length < $scope.currentExerciseIndex){
               $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
 
-              //??? has value exercise === currentExercise ???TODO???
               if(!exercises[$scope.currentExercise.title]){
                 if($scope.currentExercise.repetitions){
                   exercises[$scope.currentExercise.title] = $scope.currentExercise.repetitions;
@@ -84,7 +83,8 @@ angular.module('workout.workoutMode')
               }
               $scope.currentExerciseIndex++;
             }
-            //
+            
+            //exercise should be a map of <exercise.tile, exercise.repeats/length> pairs
             Stats.update(exercises);
           };
 
