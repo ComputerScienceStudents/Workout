@@ -2,7 +2,7 @@
 
 angular.module('workout.workoutMode')
   .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs','Stats',
-    function($stateParams, $location, Global, Programs) {
+    function($stateParams, $location, Global, Programs, Stats) {
       return {
         scope: {}, // {} = isolate, true = child, false/undefined = no change
         controller: function($scope) {
