@@ -31,9 +31,20 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
     var stats = req.user.stats;
+
+    var new_exercises = {};
+
+    for(key in Object.keys(req.exercises)){
+        new_exercises.push({
+            //TODO get exerciseId by name
+            exercise : key,
+            value : req.exercises[key]
+        });
+    }
+
     stats.workouts.push({
         date : Date.now,
-        exercises : req.exercises
+        exercises : new_exercises
     });
 
     stats.save(function(err) {

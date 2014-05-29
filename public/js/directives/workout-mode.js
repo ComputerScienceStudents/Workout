@@ -61,40 +61,31 @@ angular.module('workout.workoutMode')
           $scope.update = function(){
             //loop iterating over all program's exercises, adding all of them together
             $scope.currentExerciseIndex = 0;
-            $scope.exercises = {};
+            var exercises = {};
             while($scope.program.exercises.length < $scope.currentExerciseIndex){
               $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
 
-              var tmp = $scope.currentExercise.exercise.title;
-
-              if(!$scope.exercises[$scope.currentExercise.exercise]){
+              //??? has value exercise === currentExercise ???TODO???
+              if(!exercises[$scope.currentExercise.title]){
                 if($scope.currentExercise.repetitions){
-                  $scope.exercises.push({
-                    tmp : $scope.currentExercise.repetitions
-                  });
+                  exercises[$scope.currentExercise.title] = $scope.currentExercise.repetitions;
                 }
                 else{
-                  $scope.exercises.push({
-                    tmp : $scope.currentExercise.lenght
-                  }); 
+                  exercises[$scope.currentExercise.title] = $scope.currentExercise.lenght;
                 }
               }
               else{
                 if($scope.currentExercise.repetitions){
-                  $scope.exercises.push({
-                    tmp : $scope.currentExercise.repetitions+$scope.exercises[tmp]
-                  });
+                  exercises[$scope.currentExercise.title] = $scope.currentExercise.repetitions + exercises[$scope.currentExercise.title];
                 }
                 else{
-                  $scope.exercises.push({
-                    tmp : $scope.currentExercise.lenght+$scope.exercises[tmp]
-                  }); 
+                  exercises[$scope.currentExercise.title] = $scope.currentExercise.lenght + exercises[$scope.currentExercise.title];
                 }
               }
               $scope.currentExerciseIndex++;
             }
-
-            Stats.update($scope.exercises);
+            //
+            Stats.update(exercises);
           };
 
           $scope.exit = function() {

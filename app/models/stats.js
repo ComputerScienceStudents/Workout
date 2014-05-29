@@ -25,11 +25,8 @@ var StatsSchema = new Schema({
         },
 
         exercises: [{
-            repetitions: {
-            type: Number
-            },
-
-            length: {
+            
+            value : {
                 type: Number
             },
 
