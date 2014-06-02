@@ -68,6 +68,18 @@
                         expect(scope.exercises.length).toBe(1);
                     });
             });
+
+            describe('$scope.update() method', function () {
+
+                it('sets location to program view', function() {
+                    var programId = "d92875j80d74897d29";
+                    $stateParams.programId = programId;
+
+                    scope.update();
+                    
+                    expect($location.path()).toBe('/programs/' + programId);
+                });
+            })
     	});
     });
 })();
