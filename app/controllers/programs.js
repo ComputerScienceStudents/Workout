@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     Program = mongoose.model('Program'), 
     Rating = mongoose.model('Rating'), 
+    Comment = mongoose.model('Comment'), 
     _ = require('lodash');
 
 
@@ -13,7 +14,7 @@ var mongoose = require('mongoose'),
  * Find program by id
  */
 exports.program = function(req, res, next, id) {
-    Program.findOne({_id: id}).populate('exercises.exercise').populate('user', 'name username').populate('rating').populate('-rating.rates').exec(function(err, program) {
+    Program.findOne({_id: id}).populate('comments').populate('comments.user', 'name username').populate('exercises.exercise').populate('user', 'name username').populate('rating').populate('-rating.rates').exec(function(err, program) {
         if (err) return next(err);
         if (!program) return next(new Error('Failed to load program ' + id));
         req.program = program;
@@ -63,6 +64,22 @@ exports.update = function(req, res) {
         }
     });
 };
+
+exports.comment = function(req, res) {
+    var id = req.program._id;
+    var content = req.body.content;
+
+    var comment = new Comment();
+    comment.user = req.user;
+    comment.comment = content;
+
+    comment.save();
+
+    Program.findOne({_id: id}).populate('comments').populate('exercises.exercise').populate('user', 'name username').populate('rating').populate('-rating.rates').exec(function(err, program) {
+        program.comments.push(comment._id);
+        program.save();
+    });
+}
 
 /**
  * Delete an program

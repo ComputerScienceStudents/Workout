@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', 'Ratings', function ($scope, $stateParams, $location, Global, Programs, Exercises, Ratings) {
+angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', 'Ratings', 'Comments', function ($scope, $stateParams, $location, Global, Programs, Exercises, Ratings, Comments) {
     $scope.global = Global;
 
     $scope.exercises = [];
@@ -8,6 +8,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
     $scope.exercisesCache = [];
 
     $scope.userRate = 0;
+
+    $scope.comment = '';
 
     var currentViewId = 0;
 
@@ -151,6 +153,21 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             $location.path( "/workout/"+id);
         } 
     };
+
+    $scope.addComment = function() {
+        Comments.update({
+            programId: $stateParams.programId
+        }, {
+            content: $scope.comment
+        });
+
+        $scope.program.comments.push({
+            user: user,
+            comment: $scope.comment
+        });
+
+        $scope.comment = '';
+    }
 
     //helpers
     function saveRatings(id, value) {
