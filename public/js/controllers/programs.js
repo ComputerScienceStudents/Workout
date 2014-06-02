@@ -56,6 +56,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         });
 
         Programs.update(program);
+
+        $location.path('programs/' + $stateParams.programId);
     };
 
     $scope.loadExercisesCache = function() {
