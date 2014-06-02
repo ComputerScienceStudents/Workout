@@ -41,6 +41,11 @@ angular.module('workout').config(['$stateProvider', '$urlRouterProvider',
         url: '/workout', 
         templateUrl: 'views/workout/error.html'
     })
+    .state('Stats mode', 
+    {
+        url: '/stats', 
+        templateUrl: 'views/stats/stub.html'
+    })
     .state('Specific workout mode', 
     {
         url: '/workout/:programId', 

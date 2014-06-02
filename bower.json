@@ -11,6 +11,8 @@
     "angular-bootstrap": "0.10.0",
     "angular-ui-router": "#master",
     "angular-ui-select2": "~0.0.5",
-    "jquery-ui": "latest"
+    "jquery-ui": "latest",
+    "highcharts-ng": "~0.0.6",
+    "highcharts": "~3.0.7"
   }
 }
