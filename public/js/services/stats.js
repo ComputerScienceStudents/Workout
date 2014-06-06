@@ -5,7 +5,7 @@ angular.module('workout.workoutMode').service('Stats', ['$resource',
 		return $resource('statistics/:statsId', {
 			ratingId: "@statsId"
 		}, {
-			'update': {
+			update: {
 				method: 'PUT'
 			}
 		});

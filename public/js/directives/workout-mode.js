@@ -65,26 +65,26 @@ angular.module('workout.workoutMode')
             while($scope.program.exercises.length < $scope.currentExerciseIndex){
               $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
 
-              if(!exercises[$scope.currentExercise.title]){
+              if(!exercises[$scope.currentExercise.id]){
                 if($scope.currentExercise.repetitions){
-                  exercises[$scope.currentExercise.title] = $scope.currentExercise.repetitions;
+                  exercises[$scope.currentExercise.id] = $scope.currentExercise.repetitions;
                 }
                 else{
-                  exercises[$scope.currentExercise.title] = $scope.currentExercise.lenght;
+                  exercises[$scope.currentExercise.id] = $scope.currentExercise.lenght;
                 }
               }
               else{
                 if($scope.currentExercise.repetitions){
-                  exercises[$scope.currentExercise.title] = $scope.currentExercise.repetitions + exercises[$scope.currentExercise.title];
+                  exercises[$scope.currentExercise.id] = $scope.currentExercise.repetitions + exercises[$scope.currentExercise.id];
                 }
                 else{
-                  exercises[$scope.currentExercise.title] = $scope.currentExercise.lenght + exercises[$scope.currentExercise.title];
+                  exercises[$scope.currentExercise.id] = $scope.currentExercise.lenght + exercises[$scope.currentExercise.id];
                 }
               }
               $scope.currentExerciseIndex++;
             }
             
-            //exercise should be a map of <exercise.tile, exercise.repeats/length> pairs
+            //exercise should be a map of <exercise.id, exercise.repeats/length> pairs
             Stats.update(exercises);
           };
 

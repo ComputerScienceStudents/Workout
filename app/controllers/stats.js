@@ -36,7 +36,6 @@ exports.update = function(req, res) {
 
     for(var key in Object.keys(req.exercises)){
         new_exercises.push({
-            //TODO get exerciseId by name
             exercise : key,
             value : req.exercises[key]
         });
