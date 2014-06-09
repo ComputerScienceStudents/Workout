@@ -58,7 +58,7 @@ angular.module('workout.workoutMode')
             $scope.workoutState = "DONE";
           };
 
-          $scope.update = function(){
+          $scope.create = function(){
             //loop iterating over all program's exercises, adding all of them together
             $scope.currentExerciseIndex = 0;
             var exercises = {};
@@ -83,14 +83,21 @@ angular.module('workout.workoutMode')
               }
               $scope.currentExerciseIndex++;
             }
-            
+
+            var workout_stats = new Stats({
+              exercises: exercises
+            });
+
+            workout_stats.$save(function(){
+              $location.path("/");
+            });
+
             //exercise should be a map of <exercise.id, exercise.repeats/length> pairs
-            Stats.update(exercises);
+            
           };
 
           $scope.exit = function() {
-            $scope.update();
-            $location.path("/");
+            $scope.create();
           };
         }
       };

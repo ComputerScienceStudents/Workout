@@ -15,10 +15,14 @@ var hasAuthorization = function(req, res, next) {
 module.exports = function(app) {
 
 
-    //chyba potrzeba uzyskać w tym miejscu usera?... jak?
+	
+	//app.get('/statistics', statistics.all);
+    app.post('/statistics', authorization.requiresLogin, stats.create);
     app.get('/statistics/:statsId', stats.show);
-    app.put('/statistics/:statsId/:value', authorization.requiresLogin, hasAuthorization, stats.update);
+
+    app.del('/statistics/:statsId', authorization.requiresLogin, hasAuthorization, stats.destroy);
+
 
     // Finish with setting up the statsId param
-    app.param('statsId', stats.show);
+    //app.param('statsId', stats.id);
 };

@@ -22,12 +22,7 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
-
-    stats: {
-        type: ObjectId,
-        ref: 'Stats'
-    },
-
+    
     hashed_password: String,
     provider: String,
     salt: String,

@@ -17,25 +17,22 @@ var StatsSchema = new Schema({
         default: Date.now
     },
 
-    workouts: [{
-
-        date: {
-            type: Date,
-            default: Date.now
+    exercises: [{        
+        value : {
+            type: Number
         },
 
-        exercises: [{
-            
-            value : {
-                type: Number
-            },
+        exercise: {
+            type: ObjectId,
+            ref: 'Exercise'
+        }
+    }],
 
-            exercise: {
-                type: ObjectId,
-                ref: 'Exercise'
-            }
-        }]
-    }]
+    owner: {
+        type: ObjectId,
+        ref: 'User'
+    }
+
 });
 
 
