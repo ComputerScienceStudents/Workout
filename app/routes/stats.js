@@ -16,9 +16,9 @@ module.exports = function(app) {
 
 
     //chyba potrzeba uzyskać w tym miejscu usera?... jak?
-    app.get('/statistics/:statsId', stats.show);
+    app.get('/statistics/:statsId', stats.id);
     app.put('/statistics/:statsId', authorization.requiresLogin, hasAuthorization, stats.update);
 
     // Finish with setting up the statsId param
-    app.param('statsId', stats.show);
+    app.param('statsId', stats.id);
 };
