@@ -16,7 +16,7 @@ module.exports = function(app) {
 
 
 	
-	//app.get('/statistics', statistics.all);
+	app.get('/statistics', stats.all);
     app.post('/statistics', authorization.requiresLogin, stats.create);
     app.get('/statistics/:statsId', stats.show);
 

@@ -61,38 +61,35 @@ angular.module('workout.workoutMode')
           $scope.create = function(){
             //loop iterating over all program's exercises, adding all of them together
             $scope.currentExerciseIndex = 0;
-            var exercises = {};
-            while($scope.program.exercises.length < $scope.currentExerciseIndex){
+            var workout_stats = new Stats({
+              exercises: []
+            });
+
+            while($scope.program.exercises.length > $scope.currentExerciseIndex){
               $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
 
-              if(!exercises[$scope.currentExercise.id]){
-                if($scope.currentExercise.repetitions){
-                  exercises[$scope.currentExercise.id] = $scope.currentExercise.repetitions;
-                }
-                else{
-                  exercises[$scope.currentExercise.id] = $scope.currentExercise.lenght;
-                }
+              if($scope.currentExercise.repetitions){
+                workout_stats.exercises.push({
+                  exercise: $scope.currentExercise.id,
+                  value: $scope.currentExercise.repetitions
+                });
               }
               else{
-                if($scope.currentExercise.repetitions){
-                  exercises[$scope.currentExercise.id] = $scope.currentExercise.repetitions + exercises[$scope.currentExercise.id];
-                }
-                else{
-                  exercises[$scope.currentExercise.id] = $scope.currentExercise.lenght + exercises[$scope.currentExercise.id];
-                }
+                workout_stats.exercises.push({
+                  exercise: $scope.currentExercise.id,
+                  value: $scope.currentExercise.length
+                });
               }
               $scope.currentExerciseIndex++;
             }
 
-            var workout_stats = new Stats({
-              exercises: exercises
-            });
+            
 
             workout_stats.$save(function(){
               $location.path("/");
             });
 
-            //exercise should be a map of <exercise.id, exercise.repeats/length> pairs
+            //exercise should be a map of <exercise.id, exercise.repetitions/length> pairs
             
           };
 

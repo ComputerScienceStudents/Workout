@@ -52,12 +52,6 @@ exports.show = function(req, res) {
 };
 
 exports.all = function(req, res) {
-
-    res.jsonp(req.stats);
-
-};
-
-exports.all = function(req, res) {
     Stats.find().sort('-created').exec(function(err, stats) {
         if (err) {
             res.render('error', {
