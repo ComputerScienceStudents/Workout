@@ -1,6 +1,31 @@
 'use strict';
 
-angular.module('workout.stats').controller('StatsController', ['$scope', '$stateParams', function ($scope, $stateParams) {
+angular.module('workout.stats').controller('StatsController', ['$scope', '$stateParams', 'Global', 'Stats', function ($scope, $stateParams, Global, Stats) {
+    
+    var username = Global.user.username;
+
+    function mapStatsHistory(workouts) {
+        var stats = {};
+        for (var i = 0; i < workouts.length; i++) {
+            mapWorkoutStats(workouts[i], stats);
+        };
+        return stats;
+    }
+
+    function mapWorkoutStats(workout, stats) {
+        for (var i = 0; i < workout.exercises.length; i++) {
+            if(!(workout.exercises[i]._id in stats)) {
+                stats[workout.exercises[i]._id] = {};
+            }
+            stats[workout.exercises[i]._id][workout.created] = workout.exercises[i].value;
+        };
+    }
+
+    $scope.initialize = function() {
+        Stats.query(function(stats) {
+            $scope.stats = mapStatsHistory(stats);
+        });
+    }
 
     $scope.chart0 = {
         chart: {

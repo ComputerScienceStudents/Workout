@@ -12,6 +12,9 @@ angular.module('workout.system').controller('HeaderController', ['$scope', 'Glob
     }, {
         'title': 'Exercises',
         'link': 'exercises'
+    }, {
+        'title': 'Stats',
+        'link': 'stats'
     }];
     
     $scope.isCollapsed = false;
