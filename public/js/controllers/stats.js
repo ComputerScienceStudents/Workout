@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('workout.stats').controller('StatsController', ['$scope', '$stateParams', 'Global', 'Stats', function ($scope, $stateParams, Global, Stats) {
+angular.module('workout.stats').controller('StatsController', ['$scope', '$stateParams', 'Global', 'Stats', 'Exercises', function ($scope, $stateParams, Global, Stats, Exercises) {
     
     var username = Global.user.username;
 
@@ -14,16 +14,24 @@ angular.module('workout.stats').controller('StatsController', ['$scope', '$state
 
     function mapWorkoutStats(workout, stats) {
         for (var i = 0; i < workout.exercises.length; i++) {
-            if(!(workout.exercises[i]._id in stats)) {
-                stats[workout.exercises[i]._id] = {};
+            var exercise = mapExerciseName(workout.exercises[i]._id);
+            if(!(exercise in stats)) {
+                stats[exercise] = {};
             }
-            stats[workout.exercises[i]._id][workout.created] = workout.exercises[i].value;
+            stats[exercise][workout.created] = workout.exercises[i].value;
         };
     }
 
+    function mapExerciseName(id) {
+        return $scope.exercises.filter(function(e) { return e._id === id; })[0].title;
+    }
+
     $scope.initialize = function() {
-        Stats.query(function(stats) {
-            $scope.stats = mapStatsHistory(stats);
+        Exercises.query(function(exercises) {   
+            $scope.exercises = exercises;         
+            Stats.query(function(stats) {
+                $scope.stats = mapStatsHistory(stats);
+            });
         });
     }
 
