@@ -70,13 +70,13 @@ angular.module('workout.workoutMode')
 
               if($scope.currentExercise.repetitions){
                 workout_stats.exercises.push({
-                  exercise: $scope.currentExercise.id,
+                  exercise: $scope.currentExercise.exercise,
                   value: $scope.currentExercise.repetitions
                 });
               }
               else{
                 workout_stats.exercises.push({
-                  exercise: $scope.currentExercise.id,
+                  exercise: $scope.currentExercise.exercise,
                   value: $scope.currentExercise.length
                 });
               }
