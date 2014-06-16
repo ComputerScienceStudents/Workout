@@ -18,6 +18,7 @@ exports.program = function(req, res, next, id) {
                               .populate('exercises.exercise')
                               .populate('user', 'name username')
                               .populate('rating')
+                              .populate('rating._id')
                               .populate('-rating.rates')
                               .exec(function(err, program) {
         
@@ -97,8 +98,6 @@ exports.comment = function(req, res) {
         program.comments.push(comment._id);
         program.save();
     });
-
-    res.next();
 };
 
 /**

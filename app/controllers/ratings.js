@@ -45,6 +45,7 @@ exports.update = function(req, res) {
     var rating = req.rating;
 
     var value = req.param('value');
+    
     var userId = req.user._id;
 
     var average = 0;
