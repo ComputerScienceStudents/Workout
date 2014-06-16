@@ -4,8 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Rating = mongoose.model('Rating'), 
-    _ = require('lodash');
+    Rating = mongoose.model('Rating');
 
 
 /**
@@ -46,6 +45,7 @@ exports.update = function(req, res) {
     var rating = req.rating;
 
     var value = req.param('value');
+    
     var userId = req.user._id;
 
     var average = 0;
@@ -76,7 +76,6 @@ exports.update = function(req, res) {
         }
     });
 };
-
 
 /**
  * Show an rating
