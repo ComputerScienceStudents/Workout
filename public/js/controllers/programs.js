@@ -16,9 +16,10 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
     $scope.$watch('program.rating.userRate', function(newValue, oldValue) {
         $scope.program.rating.userRate = newValue;
         var ratingId = $scope.program.rating._id;
-        saveRatings(ratingId, newValue);
-        console.log(getRatings(ratingId));
-        $scope.findOne();
+        saveRatings(ratingId, newValue, function(){
+            $scope.program = program;
+            $scope.program.rating = getRatings($scope.program.rating._id);
+        });
     });
 
     $scope.create = function() {
@@ -134,6 +135,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             programId: $stateParams.programId
         }, function(program) {
             $scope.program = program;
+            $scope.program.rating = getRatings($scope.program.rating._id);
         });
     };
 
@@ -172,10 +174,12 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
     }
 
     //helpers
-    function saveRatings(id, value) {
+    function saveRatings(id, value, callback) {
         Ratings.update({
             ratingId: id,
             value: value
+        }, function(){
+            callback();
         });
     }
 
