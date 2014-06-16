@@ -14,7 +14,8 @@ var ObjectId = mongoose.SchemaTypes.ObjectId;
 var RatingSchema = new Schema({
     rates: [{
         user: {
-            type : Schema.ObjectId, ref : 'User'
+            type: ObjectId,
+            ref: 'User'
         },
         rate: {
             type: Number

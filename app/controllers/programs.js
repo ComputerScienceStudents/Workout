@@ -49,7 +49,7 @@ exports.create = function(req, res) {
     rating.save();
     var program = new Program(req.body);
     program.user = req.user;
-    program.rating = rating._id
+    program.rating = rating._id;
 
     program.save(function(err) {
         if (err) {
@@ -97,7 +97,9 @@ exports.comment = function(req, res) {
         program.comments.push(comment._id);
         program.save();
     });
-}
+
+    res.next();
+};
 
 /**
  * Delete an program

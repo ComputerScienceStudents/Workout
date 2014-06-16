@@ -17,8 +17,6 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         $scope.program.rating.userRate = newValue;
         var ratingId = $scope.program.rating._id;
         saveRatings(ratingId, newValue, function(){
-            $scope.program = program;
-            $scope.program.rating = getRatings($scope.program.rating._id);
         });
     });
 
@@ -41,7 +39,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         this.description = '';
         this.lead = '';
         this.exercises = [];
-        this.public = false
+        this.public = false;
     };
 
     $scope.update = function(){
@@ -144,7 +142,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             $scope.programs = programs;
             $scope.publicPrograms = [];
             for(var i=0;i<programs.length;i++){
-                if(programs[i].public && (programs[i].user==null || programs[i].user.name === $scope.global.user.name) ){
+                if(programs[i].public && (programs[i].user === null || programs[i].user.name === $scope.global.user.name) ){
                     $scope.publicPrograms.push(programs[i]);
                 }
             }
@@ -166,12 +164,12 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         });
 
         $scope.program.comments.push({
-            user: user,
+            user: $scope.global.user,
             comment: $scope.comment
         });
 
         $scope.comment = '';
-    }
+    };
 
     //helpers
     function saveRatings(id, value, callback) {

@@ -4,8 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Rating = mongoose.model('Rating'), 
-    _ = require('lodash');
+    Rating = mongoose.model('Rating');
 
 
 /**
