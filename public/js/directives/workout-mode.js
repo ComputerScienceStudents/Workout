@@ -5,7 +5,10 @@ angular.module('workout.workoutMode')
     function($stateParams, $location, Global, Programs, Stats) {
       return {
         scope: {}, // {} = isolate, true = child, false/undefined = no change
-        controller: function($scope) {
+        templateUrl: 'templates/workoutTemplate.html',
+        replace: true,
+        link: function($scope) {
+
           $scope.global = Global;
 
           $scope.workoutState = "NOT_RUNNING";
@@ -21,10 +24,6 @@ angular.module('workout.workoutMode')
           };
 
           init();
-        },
-        templateUrl: 'templates/workoutTemplate.html',
-        replace: true,
-        link: function($scope) {
 
           $scope.start = function() {
             $scope.workoutState = "RUNNING";

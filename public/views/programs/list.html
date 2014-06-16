@@ -36,9 +36,10 @@
 	<accordion>
 	  	<accordion-group ng-repeat="program in publicPrograms" is-open="isopen">
 	  		<accordion-heading>
-	  			<rating value="program.rating" max="10" readonly="true"></rating>
+				Average: {{program.rating.average}}
+				Rated by: {{program.rating.usersCount}}<br />
+
 	  			{{program.title}}
-	  			<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
 	  		</accordion-heading>
 	      	{{program.lead}}<br />
 	      	<a class="btn btn-primary" data-ng-href="#!/programs/{{program._id}}" ng-model="checkModel.left" btn-checkbox>Details</a>

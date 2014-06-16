@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Program = mongoose.model('Program'), 
+    Rating = mongoose.model('Rating'), 
     _ = require('lodash');
 
 
@@ -24,8 +25,12 @@ exports.program = function(req, res, next, id) {
  * Create an program
  */
 exports.create = function(req, res) {
+    var rating = new Rating();
+    rating.rates = [];
+    rating.save();
     var program = new Program(req.body);
     program.user = req.user;
+    program.rating = rating._id
 
     program.save(function(err) {
         if (err) {
