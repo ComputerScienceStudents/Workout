@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('workout.workoutMode')
-  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs',
-    function($stateParams, $location, Global, Programs) {
+  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs','Stats',
+    function($stateParams, $location, Global, Programs, Stats) {
       return {
         scope: {}, // {} = isolate, true = child, false/undefined = no change
         templateUrl: 'templates/workoutTemplate.html',
@@ -57,8 +57,44 @@ angular.module('workout.workoutMode')
             $scope.workoutState = "DONE";
           };
 
+          $scope.create = function(){
+            //loop iterating over all program's exercises, adding all of them together
+            $scope.currentExerciseIndex = 0;
+            var workout_stats = new Stats({
+              exercises: []
+            });
+
+            while($scope.program.exercises.length > $scope.currentExerciseIndex){
+              $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
+              var obj = $scope.currentExercise.exercise;
+              
+              if($scope.currentExercise.repetitions){
+                workout_stats.exercises.push({
+                  exercise: obj._id,
+                  value: $scope.currentExercise.repetitions
+                });
+              }
+              else{
+                workout_stats.exercises.push({
+                  exercise: obj._id,
+                  value: $scope.currentExercise.length
+                });
+              }
+              $scope.currentExerciseIndex++;
+            }
+
+            
+
+            workout_stats.$save(function(){
+              $location.path("/");
+            });
+
+            //exercise should be a map of <exercise.id, exercise.repetitions/length> pairs
+            
+          };
+
           $scope.exit = function() {
-            $location.path("/");
+            $scope.create();
           };
         }
       };
