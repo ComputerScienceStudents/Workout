@@ -13,7 +13,7 @@ var ObjectId = mongoose.SchemaTypes.ObjectId;
  */
 var CommentSchema = new Schema({
     user: {
-        type: Schema.ObjectId,
+        type: ObjectId,
         ref: 'User'
     },
     comment: { type : String }
