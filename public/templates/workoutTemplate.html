@@ -66,7 +66,12 @@
 			</span>
 
 			<span ng-switch-when="DONE">
-				<button type="button" class="btn btn-danger btn-lg" ng-click="exit()">
+				<div class="well">
+				How it went?
+				<rating value="rate" max="10" readonly="false" state-on="'glyphicon-ok-sign'" state-off="'glyphicon-ok-circle'"></rating>
+				</div>
+				<br />
+				<button type="button" class="btn btn-danger btn-lg" ng-click="exit(rate)">
 				  DONE
 				</button>
 			</span>
