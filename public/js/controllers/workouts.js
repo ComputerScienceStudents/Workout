@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('workout.workoutMode').controller('WorkoutsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs', function ($scope, $stateParams, $location, Global, Programs) {
+angular.module('workout.workoutMode').controller('WorkoutsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs', 'WorkoutRatings', function ($scope, $stateParams, $location, Global, Programs, WorkoutRatings) {
     $scope.global = Global;
 
     $scope.workoutState = "NOT_RUNNING";
