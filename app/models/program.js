@@ -58,10 +58,14 @@ var ProgramSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-
     public: {
         type: Boolean
-    }
+    },
+    comments: [
+        {
+            type: ObjectId,
+            ref: 'Comment'
+        }]
 });
 
 /**
