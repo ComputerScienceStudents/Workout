@@ -68,8 +68,7 @@ angular.module('workout.workoutMode')
             while($scope.program.exercises.length > $scope.currentExerciseIndex){
               $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
               var obj = $scope.currentExercise.exercise;
-              alert(obj._id);
-
+              
               if($scope.currentExercise.repetitions){
                 workout_stats.exercises.push({
                   exercise: obj._id,
