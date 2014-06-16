@@ -14,11 +14,27 @@ var mongoose = require('mongoose'),
  * Find program by id
  */
 exports.program = function(req, res, next, id) {
-    Program.findOne({_id: id}).populate('comments').populate('comments.user', 'name username').populate('exercises.exercise').populate('user', 'name username').populate('rating').populate('-rating.rates').exec(function(err, program) {
-        if (err) return next(err);
-        if (!program) return next(new Error('Failed to load program ' + id));
-        req.program = program;
-        next();
+    Program.findOne({_id: id}).populate('comments')
+                              .populate('exercises.exercise')
+                              .populate('user', 'name username')
+                              .populate('rating')
+                              .populate('-rating.rates')
+                              .exec(function(err, program) {
+        if (err)
+            return next(err);
+
+        if (!program)
+            return next(new Error('Failed to load program ' + id));
+
+        var options = {
+            path: 'comments.user',
+            model: 'User'
+        };
+
+        Program.populate(program, options, function(err, program){
+            req.program = program;
+            next();
+        });
     });
 };
 

@@ -18,7 +18,7 @@ module.exports = function(app) {
     app.post('/programs', authorization.requiresLogin, programs.create);
     app.get('/programs/:programId', programs.show);
     app.put('/programs/:programId', authorization.requiresLogin, hasAuthorization, programs.update);
-    app.put('/programs/:programId/comment', authorization.requiresLogin, hasAuthorization, programs.comment);
+    app.put('/programs/:programId/comment', authorization.requiresLogin, programs.comment);
     app.del('/programs/:programId', authorization.requiresLogin, hasAuthorization, programs.destroy);
 
     // Finish with setting up the programId param
