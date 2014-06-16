@@ -77,7 +77,6 @@ exports.update = function(req, res) {
     });
 };
 
-
 /**
  * Show an rating
  */

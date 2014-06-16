@@ -20,6 +20,8 @@ exports.program = function(req, res, next, id) {
                               .populate('rating')
                               .populate('-rating.rates')
                               .exec(function(err, program) {
+        
+
         if (err)
             return next(err);
 
