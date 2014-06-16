@@ -54,7 +54,7 @@ exports.show = function(req, res) {
  * List of Ratings
  */
 exports.all = function(req, res) {
-    Rating.find().sort('-created').exec(function(err, ratings) {
+    WorkoutRating.find().sort('-created').exec(function(err, ratings) {
         if (err) {
             res.render('error', {
                 status: 500
