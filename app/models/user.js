@@ -7,6 +7,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
+var ObjectId = mongoose.SchemaTypes.ObjectId;
+
 /**
  * User Schema
  */
@@ -20,6 +22,7 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
+    
     hashed_password: String,
     provider: String,
     salt: String,

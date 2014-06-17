@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('workout.workoutMode')
-  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs', 'WorkoutRatings',
-    function($stateParams, $location, Global, Programs, WorkoutRatings) {
+
+  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs', 'WorkoutRatings', 'Stats',
+    function($stateParams, $location, Global, Programs, WorkoutRatings, Stats) {
+
       return {
         scope: {}, // {} = isolate, true = child, false/undefined = no change
         templateUrl: 'templates/workoutTemplate.html',
@@ -58,7 +60,39 @@ angular.module('workout.workoutMode')
             $scope.workoutState = "DONE";
           };
 
+          $scope.create = function(){
+            //loop iterating over all program's exercises, adding all of them together
+            $scope.currentExerciseIndex = 0;
+            var workout_stats = new Stats({
+              exercises: []
+            });
+
+            while($scope.program.exercises.length > $scope.currentExerciseIndex){
+              $scope.currentExercise = $scope.program.exercises[$scope.currentExerciseIndex];
+              var obj = $scope.currentExercise.exercise;
+              
+              if($scope.currentExercise.repetitions){
+                workout_stats.exercises.push({
+                  exercise: obj._id,
+                  value: $scope.currentExercise.repetitions
+                });
+              }
+              else{
+                workout_stats.exercises.push({
+                  exercise: obj._id,
+                  value: $scope.currentExercise.length
+                });
+              }
+              $scope.currentExerciseIndex++;
+            }
+
+            workout_stats.$save(function(){
+              $location.path("/");
+            });            
+          };
+
           $scope.exit = function(rate) {
+            $scope.create();
             if(rate !== undefined && rate != -1) {
               WorkoutRatings.create({
                   programId: $scope.program._id,
@@ -66,6 +100,7 @@ angular.module('workout.workoutMode')
               }, function(){});
             }
             $location.path("/");
+
           };
         }
       };
