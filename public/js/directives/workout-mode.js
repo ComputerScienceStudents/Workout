@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('workout.workoutMode')
-  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs','Stats',
-    function($stateParams, $location, Global, Programs, Stats) {
+
+  .directive('workoutMode', ['$stateParams', '$location', 'Global', 'Programs', 'WorkoutRatings', 'Stats',
+    function($stateParams, $location, Global, Programs, WorkoutRatings, Stats) {
+
       return {
         scope: {}, // {} = isolate, true = child, false/undefined = no change
         templateUrl: 'templates/workoutTemplate.html',
@@ -14,6 +16,7 @@ angular.module('workout.workoutMode')
           $scope.workoutState = "NOT_RUNNING";
 
           $scope.exercisePause = false;
+          $scope.rate = -1;
 
           var init = function() {
             Programs.get({
@@ -83,18 +86,21 @@ angular.module('workout.workoutMode')
               $scope.currentExerciseIndex++;
             }
 
-            
-
             workout_stats.$save(function(){
               $location.path("/");
-            });
-
-            //exercise should be a map of <exercise.id, exercise.repetitions/length> pairs
-            
+            });            
           };
 
-          $scope.exit = function() {
+          $scope.exit = function(rate) {
             $scope.create();
+            if(rate !== undefined && rate != -1) {
+              WorkoutRatings.create({
+                  programId: $scope.program._id,
+                  value: rate
+              }, function(){});
+            }
+            $location.path("/");
+
           };
         }
       };

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', 'Ratings', function ($scope, $stateParams, $location, Global, Programs, Exercises, Ratings) {
+angular.module('workout.programs').controller('ProgramsController', ['$scope', '$stateParams', '$location', 'Global', 'Programs','Exercises', 'Ratings', 'Comments', function ($scope, $stateParams, $location, Global, Programs, Exercises, Ratings, Comments) {
     $scope.global = Global;
 
     $scope.exercises = [];
@@ -9,14 +9,22 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
 
     $scope.userRate = 0;
 
+    $scope.comment = '';
+
     var currentViewId = 0;
 
     $scope.$watch('program.rating.userRate', function(newValue, oldValue) {
         $scope.program.rating.userRate = newValue;
         var ratingId = $scope.program.rating._id;
-        saveRatings(ratingId, newValue);
-        console.log(getRatings(ratingId));
-        $scope.findOne();
+
+        saveRatings(ratingId, newValue, function(){
+            var rate = getRatings(ratingId, function(){
+                console.log(rate.usersCount);
+                console.log(rate.average);
+                $scope.program.rating.average = rate.average;
+                $scope.program.rating.usersCount = rate.usersCount;
+            });
+        });
     });
 
     $scope.create = function() {
@@ -132,6 +140,7 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             programId: $stateParams.programId
         }, function(program) {
             $scope.program = program;
+            $scope.program.rating = getRatings($scope.program.rating._id);
         });
     };
 
@@ -140,7 +149,8 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
             $scope.programs = programs;
             $scope.publicPrograms = [];
             for(var i=0;i<programs.length;i++){
-                if(programs[i].public && (programs[i].user===null || programs[i].user.name === $scope.global.user.name) ){
+
+                if(programs[i].public && (programs[i].user === null || programs[i].user.name === $scope.global.user.name) ){
                     $scope.publicPrograms.push(programs[i]);
                 }
             }
@@ -154,17 +164,36 @@ angular.module('workout.programs').controller('ProgramsController', ['$scope', '
         } 
     };
 
+    $scope.addComment = function() {
+        Comments.update({
+            programId: $stateParams.programId
+        }, {
+            content: $scope.comment
+        });
+
+        $scope.program.comments.push({
+            user: $scope.global.user,
+            comment: $scope.comment
+        });
+
+        $scope.comment = '';
+    };
+
     //helpers
-    function saveRatings(id, value) {
+    function saveRatings(id, value, callback) {
         Ratings.update({
             ratingId: id,
             value: value
+        }, function(){
+            callback();
         });
     }
 
-    function getRatings(id) {
+    function getRatings(id, callback) {
         return Ratings.show({
             ratingId: id
+        }, function(){
+            callback();
         });
     }
 }]);
