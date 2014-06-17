@@ -20,6 +20,9 @@
 			"public/lib/angular-ui-sortable/src/sortable.js",
 			"public/lib/angular-bootstrap/ui-bootstrap.js",
 			"public/lib/angular-bootstrap/ui-bootstrap-tpls.js",
+			"public/lib/highcharts/highcharts.js",
+			"public/lib/highcharts/highcharts-more.js",
+			"public/lib/highcharts-ng/dist/highcharts-ng.js",
 			"public/js/**/*.js"
 		]
 	}
