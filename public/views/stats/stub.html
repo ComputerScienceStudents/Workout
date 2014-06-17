@@ -1,7 +1,12 @@
 <section data-ng-controller="StatsController" data-ng-init="initialize()">
         <div class="row">
-            <highchart config="chart0"></highchart>
-            <highchart config="chart1"></highchart>
-            <highchart config="chart2"></highchart>
+        	<div data-ng-repeat="config in chartsConfig">
+        		<highchart config="config"></highchart>
+        	</div>
+        </div>
+        <div class="row">
+        	<div data-ng-repeat="config in weeklyCharts">
+        		<highchart config="config"></highchart>
+        	</div>
         </div>
 </section>
